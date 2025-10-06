@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freshmarket - Finalizar Compra</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* HEADER (igual que en index.html) */
+        header {
+            background-color: #fff;
+            border-bottom: 2px solid #e5e5e5;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo a {
+            color: #2c7a3f;
+            text-decoration: none;
+        }
+
+        .main-nav {
+            background-color: #2c7a3f;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .main-nav ul li {
+            margin: 0;
+        }
+
+        .main-nav ul li a {
+            display: block;
+            padding: 14px 22px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        .pago-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+        }
+
+        .formulario-pago {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .resumen-pedido {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        h1 {
+            color: #2c7a3f;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitulo {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .grupo-formulario {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #2c7a3f;
+        }
+
+        .medio-pago {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .opcion-pago {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .opcion-pago:hover {
+            border-color: #2c7a3f;
+        }
+
+        .opcion-pago input[type="radio"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .btn-pagar {
+            width: 100%;
+            padding: 15px;
+            background: #2c7a3f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-pagar:hover {
+            background: #256d35;
+        }
+
+        .item-resumen {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .total-resumen {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c7a3f;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e5e5;
+        }
+
+        .volver-carrito {
+            display: inline-block;
+            color: #2c7a3f;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .volver-carrito:hover {
+            text-decoration: underline;
+        }
+
+        /* MODAL DE CONFIRMACIÓN */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-contenido {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .icono-exito {
+            font-size: 60px;
+            color: #2c7a3f;
+            margin-bottom: 20px;
+        }
+
+        .btn-continuar {
+            background: #2c7a3f;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn-continuar:hover {
+            background: #256d35;
+        }
+
+        @media (max-width: 768px) {
+            .pago-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .resumen-pedido {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="top-header">
+            <div class="logo">
+                <a href="index.html">Freshmarket</a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="frutas.html">Frutas</a></li>
+                <li><a href="verduras.html">Verduras</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="pago-container">
+        <!-- FORMULARIO DE PAGO -->
+        <div class="formulario-pago">
+            <a href="javascript:history.back()" class="volver-carrito">← Volver al carrito</a>
+            <h1>Finalizar Compra</h1>
+            <p class="subtitulo">Completa tus datos para procesar el pedido</p>
+
+            <form id="formulario-pago">
+                <div class="grupo-formulario">
+                    <label for="nombre">Nombre completo *</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="email">Correo electrónico *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="telefono">Teléfono *</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="direccion">Dirección (Número de casa) *</label>
+                    <input type="text" id="direccion" name="direccion" placeholder="Ej: Carrera 45 # 26-85" required>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="barrio">Barrio *</label>
+                    <input type="text" id="barrio" name="barrio" required>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="ciudad">Ciudad *</label>
+                    <input type="text" id="ciudad" name="ciudad" value="Bogotá" required>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="observaciones">Observaciones adicionales</label>
+                    <textarea id="observaciones" name="observaciones" rows="4" placeholder="Instrucciones especiales para la entrega..."></textarea>
+                </div>
+
+                <!-- MÉTODO DE PAGO -->
+                <div class="medio-pago">
+                    <h3 style="margin-top: 0; color: #2c7a3f;">Método de pago</h3>
+                    
+                    <div class="opcion-pago">
+                        <input type="radio" id="efectivo" name="metodo-pago" value="efectivo" checked>
+                        <label for="efectivo" style="margin: 0; cursor: pointer;">
+                            <strong>Pago contra entrega</strong>
+                            <br>
+                            <small>Paga en efectivo cuando recibas tu pedido</small>
+                        </label>
+                    </div>
+
+                    <div class="opcion-pago">
+                        <input type="radio" id="transferencia" name="metodo-pago" value="transferencia">
+                        <label for="transferencia" style="margin: 0; cursor: pointer;">
+                            <strong>Transferencia bancaria</strong>
+                            <br>
+                            <small>Realiza la transferencia y envíanos el comprobante</small>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-pagar">Confirmar Pedido</button>
+            </form>
+        </div>
+
+        <!-- RESUMEN DEL PEDIDO -->
+        <div class="resumen-pedido">
+            <h3 style="color: #2c7a3f; margin-top: 0;">Resumen de tu pedido</h3>
+            
+            <div id="resumen-productos">
+                <!-- Los productos se cargarán aquí dinámicamente -->
+            </div>
+
+            <div class="total-resumen">
+                <span>Total:</span>
+                <span id="total-pedido">$0</span>
+            </div>
+
+            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                <h4 style="margin: 0 0 10px 0; color: #2c7a3f;">Información de entrega</h4>
+                <p style="margin: 5px 0; font-size: 14px;">📦 Entrega en 24-48 horas</p>
+                <p style="margin: 5px 0; font-size: 14px;">🚚 Envío gratis en órdenes mayores a $50.000</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE CONFIRMACIÓN -->
+    <div class="modal" id="modal-confirmacion">
+        <div class="modal-contenido">
+            <div class="icono-exito">✅</div>
+            <h2 style="color: #2c7a3f;">¡Gracias por tu compra!</h2>
+            <p>Tu pedido ha sido procesado exitosamente.</p>
+            <p><strong>Número de pedido: #<span id="numero-pedido">0000</span></strong></p>
+            <p>Te contactaremos pronto para coordinar la entrega.</p>
+            <button class="btn-continuar" onclick="window.location.href='index.html'">Continuar Comprando</button>
+        </div>
+    </div>
+
+    <script>
+        // Cargar productos del carrito desde localStorage
+        function cargarResumenPedido() {
+            const carrito = JSON.parse(localStorage.getItem('carritoFreshmarket')) || [];
+            const resumenProductos = document.getElementById('resumen-productos');
+            const totalPedido = document.getElementById('total-pedido');
+            
+            let total = 0;
+            let html = '';
+
+            if (carrito.length === 0) {
+                html = '<p>No hay productos en el carrito</p>';
+                totalPedido.textContent = '$0';
+            } else {
+                carrito.forEach(producto => {
+                    const subtotal = producto.precio * producto.cantidad;
+                    total += subtotal;
+                    
+                    html += `
+                        <div class="item-resumen">
+                            <div>
+                                <strong>${producto.nombre}</strong>
+                                <br>
+                                <small>${producto.cantidad} ${producto.unidad} x $${producto.precio.toLocaleString()}</small>
+                            </div>
+                            <span>$${Math.round(subtotal).toLocaleString()}</span>
+                        </div>
+                    `;
+                });
+                
+                totalPedido.textContent = `$${Math.round(total).toLocaleString()}`;
+            }
+            
+            resumenProductos.innerHTML = html;
+        }
+
+        // Generar número de pedido aleatorio
+        function generarNumeroPedido() {
+            return Math.floor(1000 + Math.random() * 9000);
+        }
+
+        // Manejar envío del formulario
+        document.getElementById('formulario-pago').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validar formulario
+            const formData = new FormData(this);
+            const datos = Object.fromEntries(formData);
+            
+            // Mostrar modal de confirmación
+            document.getElementById('numero-pedido').textContent = generarNumeroPedido();
+            document.getElementById('modal-confirmacion').style.display = 'flex';
+            
+            // Limpiar carrito
+            localStorage.removeItem('carritoFreshmarket');
+            
+            // Opcional: Aquí podrías enviar los datos a un servidor
+            console.log('Datos del pedido:', datos);
+            console.log('Carrito:', JSON.parse(localStorage.getItem('carritoFreshmarket') || '[]'));
+        });
+
+        // Cargar resumen al iniciar la página
+        document.addEventListener('DOMContentLoaded', cargarResumenPedido);
+    </script>
+</body>
+</html>
