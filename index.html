@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freshmarket</title>
+  <link rel="stylesheet" href="css/style.css">
+  
+
+<body>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      background-color: #fff;
+      border-bottom: 2px solid #e5e5e5;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: #2c7a3f;
+    }
+
+    /* ---------- SEARCH BAR ---------- */
+    .search-bar {
+      flex: 1;
+      margin-left: 40px;
+      display: flex;
+      max-width: 600px;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 2px solid #2c7a3f;
+      border-radius: 25px 0 0 25px;
+      outline: none;
+    }
+
+    .search-bar button {
+      padding: 10px 20px;
+      border: none;
+      background: #2c7a3f;
+      color: white;
+      border-radius: 0 25px 25px 0;
+      cursor: pointer;
+    }
+
+    /* ---------- NAV ---------- */
+    .main-nav {
+      background-color: #2c7a3f;
+    }
+
+    .main-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .main-nav ul li {
+      margin: 0;
+    }
+
+    .main-nav ul li a {
+      display: block;
+      padding: 14px 22px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .main-nav ul li a:hover {
+      background-color: #256d35;
+    }
+
+    /* ---------- HAMBURGER ---------- */
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      cursor: pointer;
+      color: #2c7a3f;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      .search-bar {
+        display: none; /* ocultar barra búsqueda en móviles */
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .main-nav ul {
+        flex-direction: column;
+        display: none;
+        background: #2c7a3f;
+        text-align: center;
+      }
+
+      .main-nav.active ul {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+
+
+  <!-- ---------- HEADER ---------- -->
+  <header>
+    <!-- fila superior: logo + búsqueda + hamburguesa -->
+  <div class="top-header">
+      <div class="logo">
+       <a href="index.html">Freshmarket</a>
+      </div>
+
+      
+      <div class="hamburger">☰</div>
+    </div>
+
+    <!-- fila inferior: categorías -->
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="frutas.html">Frutas</a></li>
+        <li><a href="verduras.html">Verduras</a></li>
+        <li><a href="jugos.html">Frutas para jugos</a></li>
+        <li><a href="hierbas.html">Hierbas</a></li>
+        <li><a href="ofertas.html">Ofertas</a></li>
+        </ul>
+    </nav>
+    <!-- Carrito de compras -->
+   <div class="carrito">
+    <a href="#">
+        <img src="img/carrito.png" alt="Carrito">
+        <span class="contador-carrito">0</span>
+    </a>
+ </div>
+ </header>
+</body>
+
+ <!-- ---------- SCRIPT ---------- -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.main-nav');
+
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+  </script>
+  <!-- ---------- CARRITO DE COMPRAS ---------- -->
+   <!-- Overlay para el carrito -->
+   <div class="overlay"></div>
+   <!-- Sidebar del carrito -->
+   <div class="carrito-sidebar">
+    <div class="carrito-header">
+        <h2>Tu Carrito</h2>
+        <button class="cerrar-carrito">×</button>
+    </div>
+    
+    <div class="lista-carrito">
+        <!-- Los productos del carrito se agregarán aquí dinámicamente -->
+    </div>
+    
+    <div class="carrito-total">
+        <p>Total: <span class="total-carrito">$0</span></p>
+    </div>
+    
+    <div class="botones-carrito">
+        <button class="btn-vaciar">Vaciar Carrito</button>
+        <button class="btn-comprar">Finalizar Compra</button>
+    </div>
+   </div>
+
+ 
+
+<!-- =============================
+     HERO IMAGE / CARRUSEL
+============================= -->
+<section class="hero">
+  <div class="hero-content">
+    <h2>Explora nuestros productos frescos</h2>
+    <a href="productos-frescos.html" class="btn-hero">Ver más</a>
+  </div>
+</section>
+
+
+<section class="categorias">
+    <h2>¿Qué quieres comprar hoy?</h2>
+    <div class="contenedor-categorias">
+        <div class="categoria">
+            <img src="img/frutas.jpg" alt="Frutas">
+            <h3>Frutas</h3>
+        </div>
+        <div class="categoria">
+            <img src="img/verduras.png" alt="Verduras">
+            <h3>Verduras</h3>
+        </div>
+        <div class="categoria">
+            <img src="img/lulo.jpg" alt="Frutas para jugos">
+            <h3>Frutas para jugos</h3>
+        </div>
+        <div class="categoria">
+            <img src="img/hierbas.jpg" alt="Hierbas">
+            <h3>Hierbas</h3>
+        </div>
+    </div>
+</section>
+
+<section class="opciones-compra">
+    <div class="opcion">
+        <h3>Compra en línea</h3>
+        <p>Realiza tu pedido en Freshmarket y recíbelo en la puerta de tu hogar.</p>
+        <a href="frutas.html" class="btn">Comprar</a>
+    </div>
+    <div class="opcion">
+        <h3>Pide por WhatsApp</h3>
+        <p>Haz tu pedido rápido escribiéndonos directamente por WhatsApp.</p>
+        <a href="https://wa.me/3148928711" target="_blank" class="btn">Hacer pedido</a>
+    </div>
+</section>
+
+
+<!-- Sección de productos recomendados -->
+<section class="productos-interes">
+  <h2>Productos que te podrían interesar</h2>
+  <div class="productos-grid">
+    
+    <!-- Producto 1 piña -->
+  <div class="producto-card">
+  <img src="img/pina.png" alt="Piña">
+  <h3>Piña</h3>
+  <p>$ 2.500 x Libra</p>
+  <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
+</div>
+    
+    <!-- Producto 2 platano -->
+    <div class="producto-card">
+  <img src="img/platano.png" alt="Plátano">
+  <h3>Plátano</h3>
+  <p>$ 1.800 x Libra</p>
+  <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
+</div>
+    
+    <!-- Producto 3 tomate-->
+   <div class="producto-card">
+  <img src="img/tomate.png" alt="Tomate">
+  <h3>Tomate</h3>
+  <p>$ 2.200 x Libra</p>
+  <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
+</div>
+    
+    <!-- Producto 4 papa-->
+   <div class="producto-card">
+  <img src="img/papa.png" alt="Papa">
+  <h3>Papa</h3>
+  <p>$ 1.500 x Libra</p>
+  <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
+</div>
+</section>
+
+
+<!-- Sección de confianza -->
+<section class="confianza">
+  <div class="confianza-container">
+    <!-- Columna izquierda -->
+    <div class="columna-izquierda">
+      <h3>DEL CAMPO A LA MESA</h3>
+      <div class="imagen-contenedor">
+        <img src="img/del campo a la mesa.png" alt="Del campo a la mesa">
+      </div>
+      <p>Del campo a tu mesa: productos frescos directamente de nuestros agricultores, sin intermediarios.</p>
+    </div>
+    
+    <!-- Columna derecha -->
+    <div class="columna-derecha">
+      <h3>GARANTIZANDO LA CALIDAD</h3>
+      <div class="imagen-contenedor">
+        <img src="img/garantizando la calidad.png" alt="Garantizando la calidad">
+      </div>
+      <p>Garantizamos calidad y frescura en cada compra. ¡Tu confianza es lo más importante para nosotros!</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- Script para cambiar Agregar/Retirar -->
+<script>
+  function toggleCart(button) {
+    if (button.innerText.includes("Agregar")) {
+      button.innerText = "Retirar 🗑️";
+      button.classList.add("retirar");
+    } else {
+      button.innerText = "Agregar al carrito 🛒";
+      button.classList.remove("retirar");
+    }
+  }
+</script>
+
+<style>
+/* Sección productos */
+.productos-interes {
+  padding: 40px 20px;
+  background: #F0F0F0;
+  border-radius: 70px;
+  margin-top: 30px;
+}
+
+.productos-interes h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2e7d32;
+}
+
+/* Grid de productos */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Tarjeta */
+.producto-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+}
+
+.producto-card img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.producto-card h3 {
+  margin: 10px 0;
+  color: #333;
+}
+
+.producto-card p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.producto-card .unidad {
+  font-size: 14px;
+}
+
+/* Botón carrito */
+.btn-carrito {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background: #2e7d32;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-carrito:hover {
+  background: #256628;
+}
+
+.btn-carrito.retirar {
+  background: #d32f2f;
+}
+</style>
+
+
+ <!-- ---------- FOOTER ---------- -->
+
+<footer class="footer">
+  <div class="footer-left">
+    <p><strong>Contacto:</strong></p>
+    <p>Email: <a href="mailto:Freshmarket@gmail.com">Freshmarket@gmail.com</a></p>
+    <p>Tel: 52-1-33-12345678</p>
+  </div>
+  <div class="footer-right">
+    <a href="pie/politicas.html" target="_blank">Términos y Condiciones</a>
+    <a href="pie/politicas.html" target="_blank" >Política de Envío</a>
+    <a href="pie/politicas.html" target="_blank">Política de Privacidad</a>
+  </div>
+</footer>
+
+<!-- Enlazar el archivo JavaScript -->
+  <script src="js/main.js"></script>
+<body>
+  </html>
+
+    

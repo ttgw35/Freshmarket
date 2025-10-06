@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freshmarket</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      background-color: #fff;
+      border-bottom: 2px solid #e5e5e5;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: #2c7a3f;
+    }
+
+    .logo a {
+      color: #2c7a3f;
+      text-decoration: none;
+    }
+
+    .logo a:hover {
+      color: #256d35;
+    }
+
+    /* ---------- SEARCH BAR MEJORADA ---------- */
+    .search-container {
+      flex: 1;
+      margin-left: 40px;
+      max-width: 600px;
+      position: relative;
+    }
+
+    .search-bar {
+      display: flex;
+      position: relative;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 2px solid #2c7a3f;
+      border-radius: 25px 0 0 25px;
+      outline: none;
+    }
+
+    .search-bar button {
+      padding: 10px 20px;
+      border: none;
+      background: #2c7a3f;
+      color: white;
+      border-radius: 0 25px 25px 0;
+      cursor: pointer;
+    }
+
+    /* SUGERENCIAS DE BÚSQUEDA */
+    .suggestions-container {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      z-index: 1000;
+      display: none;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .suggestion-item {
+      padding: 12px 15px;
+      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s;
+    }
+
+    .suggestion-item:hover {
+      background: #f8f9fa;
+    }
+
+    .suggestion-item:last-child {
+      border-bottom: none;
+    }
+
+    .suggestion-item img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .suggestion-info {
+      flex: 1;
+    }
+
+    .suggestion-name {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 2px;
+    }
+
+    .suggestion-price {
+      color: #2c7a3f;
+      font-size: 12px;
+    }
+
+    .suggestion-category {
+      color: #666;
+      font-size: 11px;
+      background: #f0f0f0;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    .no-results {
+      padding: 15px;
+      text-align: center;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* ---------- NAV ---------- */
+    .main-nav {
+      background-color: #2c7a3f;
+    }
+
+    .main-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .main-nav ul li {
+      margin: 0;
+    }
+
+    .main-nav ul li a {
+      display: block;
+      padding: 14px 22px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .main-nav ul li a:hover {
+      background-color: #256d35;
+    }
+
+    /* ---------- HAMBURGER ---------- */
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      cursor: pointer;
+      color: #2c7a3f;
+    }
+
+    /* CARRITO */
+    .carrito {
+      position: relative;
+      margin-left: 15px;
+    }
+
+    .carrito a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .carrito img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .contador-carrito {
+      background: #e74c3c;
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      display: none;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      .search-container {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .main-nav ul {
+        flex-direction: column;
+        display: none;
+        background: #2c7a3f;
+        text-align: center;
+      }
+
+      .main-nav.active ul {
+        display: flex;
+      }
+    }
+
+    /* Sección productos */
+    .productos-interes {
+      padding: 40px 20px;
+      background: #F0F0F0;
+      border-radius: 70px;
+      margin-top: 30px;
+    }
+
+    .productos-interes h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2e7d32;
+    }
+
+    /* Grid de productos */
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    /* Tarjeta */
+    .producto-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .producto-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .producto-card img {
+      width: 100%;
+      max-height: 150px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .producto-card h3 {
+      margin: 10px 0;
+      color: #333;
+    }
+
+    .producto-card p {
+      margin: 5px 0;
+      color: #666;
+    }
+
+    .producto-card .unidad {
+      font-size: 14px;
+    }
+
+    /* Botón carrito */
+    .btn-carrito {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #2e7d32;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn-carrito:hover {
+      background: #256628;
+    }
+
+    .btn-carrito.retirar {
+      background: #d32f2f;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/hero-bg.jpg') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .hero-content h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .btn-hero {
+      display: inline-block;
+      background: #2c7a3f;
+      color: white;
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn-hero:hover {
+      background: #256d35;
+    }
+
+    /* CATEGORIAS SECTION */
+    .categorias {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .categorias h2 {
+      color: #2c7a3f;
+      margin-bottom: 40px;
+      font-size: 2em;
+    }
+
+    .contenedor-categorias {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .categoria {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .categoria:hover {
+      transform: translateY(-5px);
+    }
+
+    .categoria img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .categoria h3 {
+      color: #333;
+      margin: 0;
+    }
+
+    /* OPCIONES COMPRA */
+    .opciones-compra {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 60px 20px;
+      background: #f8f9fa;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .opcion {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .opcion h3 {
+      color: #2c7a3f;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #2c7a3f;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: background 0.3s;
+      margin-top: 15px;
+    }
+
+    .btn:hover {
+      background: #256d35;
+    }
+
+    /* CONFIANZA SECTION */
+    .confianza {
+      padding: 60px 20px;
+      background: white;
+    }
+
+    .confianza-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .columna-izquierda, .columna-derecha {
+      text-align: center;
+    }
+
+    .columna-izquierda h3, .columna-derecha h3 {
+      color: #2c7a3f;
+      margin-bottom: 20px;
+    }
+
+    .imagen-contenedor img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #2c7a3f;
+      color: white;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-left, .footer-right {
+      flex: 1;
+      min-width: 300px;
+      margin-bottom: 20px;
+    }
+
+    .footer-left p, .footer-right a {
+      margin: 8px 0;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-right a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 8px 0;
+    }
+
+    .footer-right a:hover {
+      text-decoration: underline;
+    }
+
+    .footer a[href^="mailto:"] {
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ---------- HEADER ---------- -->
+  <header>
+    <!-- fila superior: logo + búsqueda + hamburguesa -->
+    <div class="top-header">
+      <div class="logo">
+        <a href="index.html">Freshmarket</a>
+      </div>
+
+      <div class="search-container">
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="¿Qué producto estás buscando?">
+          <button id="search-button">🔍</button>
+        </div>
+        <div class="suggestions-container" id="suggestions-container">
+          <!-- Las sugerencias se cargarán aquí dinámicamente -->
+        </div>
+      </div>
+
+      <div class="carrito">
+        <a href="#">
+          <img src="img/carrito.png" alt="Carrito">
+          <span class="contador-carrito">0</span>
+        </a>
+      </div>
+
+      <div class="hamburger">☰</div>
+    </div>
+
+    <!-- fila inferior: categorías -->
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="frutas.html">Frutas</a></li>
+        <li><a href="verduras.html">Verduras</a></li>
+        <li><a href="jugos.html">Frutas para jugos</a></li>
+        <li><a href="hierbas.html">Hierbas</a></li>
+        <li><a href="ofertas.html">Ofertas</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ---------- SCRIPT PARA BÚSQUEDA Y MENÚ ---------- -->
+  <script>
+    // Base de datos de productos para búsqueda
+    const productosDB = [
+      {
+        id: 'piña',
+        nombre: 'Piña',
+        precio: 2500,
+        imagen: 'img/pina.png',
+        categoria: 'Frutas',
+        url: 'frutas-tropicales.html'
+      },
+      {
+        id: 'plátano',
+        nombre: 'Plátano',
+        precio: 1800,
+        imagen: 'img/platano.png',
+        categoria: 'Frutas',
+        url: 'frutas-populares.html'
+      },
+      {
+        id: 'Gulupa',
+        nombre: 'Gulupa',
+        precio: 9000,
+        imagen: 'img/gulupa.png',
+        categoria: 'Frutas',
+        url: 'gulupa.html'
+      }, 
+       {
+        id: 'zanahoria',
+        nombre: 'zanahoria',
+        precio: 3320,
+        imagen: 'img/zanahoria.png',
+        categoria: 'verduras',
+        url: 'zanahoria.html'
+      }, 
+       {
+        id: 'remolacha',
+        nombre: 'remolacha',
+        precio: 2790,
+        imagen: 'img/remolacha.png',
+        categoria: 'verduras',
+        url: 'remolacha.html'
+      }, 
+       {
+        id: 'lulo',
+        nombre: 'Lulo',
+        precio: 3050,
+        imagen: 'img/lulo a granel.png',
+        categoria: 'Jugos',
+        url: 'lulo.html'
+      }, 
+       {
+        id: 'Mora',
+        nombre: 'Mora',
+        precio: 6200,
+        imagen: 'img/mora.png',
+        categoria: 'Jugos',
+        url: 'mora.html'
+      }, 
+      {
+        id: 'Oregano',
+        nombre: 'Orégano',
+        precio: 790,
+        imagen: 'img/oregano.png',
+        categoria: 'Hierbas',
+        url: 'oregano.html'
+      }, 
+       {
+        id: 'Pulpa de mango',
+        nombre: 'Pulpa de mango',
+        precio: 1720,
+        imagen: 'img/pulpa mango.png',
+        categoria: 'Pulpas',
+        url: 'pulpa-de-mango.html'
+      }, 
+       {
+        id: 'Pulpa de maracuyá',
+        nombre: 'Pulpa de maracuyá',
+        precio: 3400,
+        imagen: 'img/pulpa maracuyá.png',
+        categoria: 'Pulpas',
+        url: 'pulpa-de-maracuya.html'
+      }, 
+      {
+        id: 'Oregano',
+        nombre: 'Orégano',
+        precio: 790,
+        imagen: 'img/oregano.png',
+        categoria: 'Hierbas',
+        url: 'oregano.html'
+      }, 
+      {
+        id: 'Tomate de árbol',
+        nombre: 'Tomate de árbol',
+        precio: 1400,
+        imagen: 'img/tomate de arbol.jpg',
+        categoria: 'frutas',
+        url: 'tomatearbol.html'
+      }, 
+      {
+        id: 'Oregano',
+        nombre: 'Orégano',
+        precio: 790,
+        imagen: 'img/oregano.png',
+        categoria: 'Hierbas',
+        url: 'oregano.html'
+      }, 
+      {
+        id: 'Naranja',
+        nombre: 'Naranja',
+        precio: 1700,
+        imagen: 'img/naranja.jpg',
+        categoria: 'frutas',
+        url: 'naranja.html'
+      }, 
+      {
+        id: 'Manzanilla',
+        nombre: 'Manzanilla',
+        precio: 3200,
+        imagen: 'img/manzanilla.png',
+        categoria: 'hierbas',
+        url: 'manzanilla.html'
+      }, 
+      {
+        id: 'Limon Tahití',
+        nombre: 'limón',
+        precio: 2320,
+        imagen: 'img/limon.png',
+        categoria: 'oferta',
+        url: 'limon.html'
+      }, 
+      {
+        id: 'Cebolla cabezona',
+        nombre: 'Cebolla cabezona',
+        precio: 2170,
+        imagen: 'img/gulupa.png',
+        categoria: 'oferta',
+        url: 'cebolla.html'
+      }, 
+      {
+        id: 'granadilla',
+        nombre: 'granadilla',
+        precio: 4524,
+        imagen: 'img/granadilla.png',
+        categoria: 'oferta',
+        url: 'granadilla.html'
+      }, 
+      {
+        id: 'tomate',
+        nombre: 'Tomate',
+        precio: 2200,
+        imagen: 'img/tomate.png',
+        categoria: 'Verduras',
+        url: 'verduras.html'
+      },
+      {
+        id: 'papa',
+        nombre: 'Papa',
+        precio: 1500,
+        imagen: 'img/papa.png',
+        categoria: 'Verduras',
+        url: 'verduras.html'
+      },
+      {
+        id: 'mango',
+        nombre: 'Mango',
+        precio: 2250,
+        imagen: 'img/mango.png',
+        categoria: 'Frutas Tropicales',
+        url: 'mango.html'
+      },
+      {
+        id: 'papaya',
+        nombre: 'Papaya',
+        precio: 2200,
+        imagen: 'img/papaya.png',
+        categoria: 'Frutas Tropicales',
+        url: 'papaya.html'
+      },
+      {
+        id: 'aguacate',
+        nombre: 'Aguacate',
+        precio: 2250,
+        imagen: 'img/aguacate.png',
+        categoria: 'Frutas Tropicales',
+        url: 'aguacate.html'
+      },
+      {
+        id: 'manzana-roja',
+        nombre: 'Manzana Roja',
+        precio: 5200,
+        imagen: 'img/manzana roja.png',
+        categoria: 'Productos Frescos',
+        url: 'manzana.html'
+      },
+      {
+        id: 'bananos',
+        nombre: 'Bananos',
+        precio: 1300,
+        imagen: 'img/banano.png',
+        categoria: 'Productos Frescos',
+        url: 'banano.html'
+      },
+      {
+        id: 'uchuva',
+        nombre: 'Uchuva',
+        precio: 9000,
+        imagen: 'img/uchuva.png',
+        categoria: 'Frutas Poco Comunes',
+        url: 'uchuva.html'
+      },
+      {
+        id: 'espinaca',
+        nombre: 'Espinaca',
+        precio: 450,
+        imagen: 'img/espinaca.png',
+        categoria: 'Verduras',
+        url: 'espinaca.html'
+      },
+      {
+        id: 'lechuga',
+        nombre: 'Lechuga',
+        precio: 1250,
+        imagen: 'img/lechuga.png',
+        categoria: 'Verduras',
+        url: 'lechuga.html'
+      }
+    ];
+
+    // Elementos del DOM
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+    const suggestionsContainer = document.getElementById('suggestions-container');
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.main-nav');
+
+    // Función para buscar productos
+    function buscarProductos(termino) {
+      if (!termino) return [];
+      
+      const terminoLower = termino.toLowerCase();
+      return productosDB.filter(producto => 
+        producto.nombre.toLowerCase().includes(terminoLower) ||
+        producto.categoria.toLowerCase().includes(terminoLower)
+      );
+    }
+
+    // Función para mostrar sugerencias
+    function mostrarSugerencias(productos) {
+      suggestionsContainer.innerHTML = '';
+      
+      if (productos.length === 0) {
+        suggestionsContainer.innerHTML = '<div class="no-results">No se encontraron productos</div>';
+        suggestionsContainer.style.display = 'block';
+        return;
+      }
+
+      // Mostrar máximo 5 sugerencias
+      const productosMostrar = productos.slice(0, 5);
+      
+      productosMostrar.forEach(producto => {
+        const suggestionItem = document.createElement('div');
+        suggestionItem.className = 'suggestion-item';
+        suggestionItem.innerHTML = `
+          <img src="${producto.imagen}" alt="${producto.nombre}" onerror="this.src='img/placeholder.png'">
+          <div class="suggestion-info">
+            <div class="suggestion-name">${producto.nombre}</div>
+            <div class="suggestion-price">$${producto.precio.toLocaleString()} / libra</div>
+          </div>
+          <span class="suggestion-category">${producto.categoria}</span>
+        `;
+        
+        suggestionItem.addEventListener('click', () => {
+          window.location.href = producto.url;
+          suggestionsContainer.style.display = 'none';
+        });
+        
+        suggestionsContainer.appendChild(suggestionItem);
+      });
+      
+      suggestionsContainer.style.display = 'block';
+    }
+
+    // Función para realizar búsqueda
+    function realizarBusqueda() {
+      const termino = searchInput.value.trim();
+      if (termino) {
+        const resultados = buscarProductos(termino);
+        if (resultados.length > 0) {
+          window.location.href = resultados[0].url;
+        }
+      }
+      suggestionsContainer.style.display = 'none';
+    }
+
+    // Event Listeners para búsqueda
+    if (searchInput && suggestionsContainer) {
+      searchInput.addEventListener('input', (e) => {
+        const termino = e.target.value.trim();
+        if (termino.length > 1) {
+          const resultados = buscarProductos(termino);
+          mostrarSugerencias(resultados);
+        } else {
+          suggestionsContainer.style.display = 'none';
+        }
+      });
+
+      searchInput.addEventListener('focus', () => {
+        const termino = searchInput.value.trim();
+        if (termino.length > 1) {
+          const resultados = buscarProductos(termino);
+          mostrarSugerencias(resultados);
+        }
+      });
+
+      if (searchButton) {
+        searchButton.addEventListener('click', realizarBusqueda);
+      }
+
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          realizarBusqueda();
+        }
+      });
+
+      // Cerrar sugerencias al hacer clic fuera
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-container')) {
+          suggestionsContainer.style.display = 'none';
+        }
+      });
+    }
+
+    // Menú hamburguesa
+    if (hamburger && nav) {
+      hamburger.addEventListener('click', () => {
+        nav.classList.toggle('active');
+      });
+    }
+
+    // Cerrar menú al hacer clic en un enlace (en móviles)
+    document.querySelectorAll('.main-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+      });
+    });
+  </script>
+
+  <!-- ---------- CARRITO DE COMPRAS ---------- -->
+  <!-- Overlay para el carrito -->
+  <div class="overlay"></div>
+  <!-- Sidebar del carrito -->
+  <div class="carrito-sidebar">
+    <div class="carrito-header">
+      <h2>Tu Carrito</h2>
+      <button class="cerrar-carrito">×</button>
+    </div>
+    
+    <div class="lista-carrito">
+      <!-- Los productos del carrito se agregarán aquí dinámicamente -->
+    </div>
+    
+    <div class="carrito-total">
+      <p>Total: <span class="total-carrito">$0</span></p>
+    </div>
+    
+    <div class="botones-carrito">
+      <button class="btn-vaciar">Vaciar Carrito</button>
+      <button class="btn-comprar">Finalizar Compra</button>
+    </div>
+</div>
+
+
+
+
+<style>
+    .producto-detalle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      padding: 50px 20px;
+    }
+    .producto-detalle img {
+      width: 300px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .producto-info {
+      max-width: 500px;
+    }
+    .producto-info h1 {
+      font-size: 2rem;
+      color: #2c7a3f;
+      margin-bottom: 10px;
+    }
+    .producto-info p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .producto-precio {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2c7a3f;
+      margin-bottom: 20px;
+    }
+    .btn-carrito {
+      padding: 12px 20px;
+      border: 2px solid #2c7a3f;
+      background: #fff;
+      color: #2c7a3f;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-carrito:hover {
+      background: #2c7a3f;
+      color: #fff;
+    }
+    .volver {
+      display: flex;
+      align-items: center;
+      margin: 20px;
+      text-decoration: none;
+      color: #2c7a3f;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .volver:hover {
+      text-decoration: underline;
+    }
+    .volver span {
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botón volver -->
+  <a href="hierbas-aromaticas.html" class="volver">⬅ <span>Volver a hierbas</span></a>
+
+  <!-- Detalle del producto -->
+  <section class="producto-detalle">
+    <img src="img/oregano.png" alt="Oregano">
+    <div class="producto-info">
+      <h1>Orégano</h1>
+      <p>Orégano en hojas sueltas.</p>
+      <div class="producto-precio">$ 790 x lb</div>
+      <button class="btn-carrito" onclick="manejarAgregarCarritoDetalle(this)">Agregar al carrito 🛒</button>
+    </div>
+  </section>
+
+</body>
+</html>
+
+ <!-- ---------- FOOTER ---------- -->
+
+<footer class="footer">
+  <div class="footer-left">
+    <p><strong>Contacto:</strong></p>
+    <p>Email: <a href="mailto:Freshmarket@gmail.com">Freshmarket@gmail.com</a></p>
+    <p>Tel: 52-1-33-12345678</p>
+  </div>
+  <div class="footer-right">
+    <a href="pie/politicas.html" target="_blank">Términos y Condiciones</a>
+    <a href="pie/politicas.html" target="_blank" >Política de Envío</a>
+    <a href="pie/politicas.html" target="_blank">Política de Privacidad</a>
+  </div>
+</footer>
+
+<!-- Enlazar el archivo JavaScript -->
+<script src="js/main.js"></script>
+</body>
+</html>

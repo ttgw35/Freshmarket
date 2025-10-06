@@ -1,0 +1,1495 @@
+/* =============================
+   ESTILO GENERAL
+============================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* =============================
+   HEADER Y MENÚ
+============================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 15px 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .logo h1 {
+    color: #2e7d32; /* verde fresco */
+    font-size: 1.8rem;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #2e7d32;
+}
+
+header .carrito img {
+    width: 28px;
+    transition: transform 0.2s ease;
+}
+
+header .carrito img:hover {
+    transform: scale(1.1);
+}
+
+/* =============================
+   CATEGORÍAS
+============================= */
+.categorias {
+    padding: 50px 10%;
+    text-align: center;
+}
+
+.categorias h2 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #2e7d32;
+}
+
+.contenedor-categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.categoria {
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.categoria img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.categoria h3 {
+    padding: 15px;
+    font-size: 1.2rem;
+    color: #333;
+    background: #f0fdf4;
+}
+
+.categoria:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* =============================
+   OPCIONES DE COMPRA
+============================= */
+.opciones-compra {
+    padding: 50px 10%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.opcion {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.opcion h3 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+.opcion p {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.opcion .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #2e7d32;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.opcion .btn:hover {
+    background: #1b5e20;
+}
+
+.opcion:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* =============================
+   RESPONSIVE (Celular / Tablet)
+============================= */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    header nav ul {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .categorias h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* =============================
+   HERO IMAGE
+============================= */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 70vh; /* 70% de la altura de la pantalla */
+    background: url("../img/manzana.jpg") no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.35); /* oscurece para que el texto resalte */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    padding: 20px;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-shadow: 1px 2px 6px rgba(0,0,0,0.5);
+}
+
+.btn-hero {
+    padding: 12px 25px;
+    background: #ff7043; /* naranja fresco */
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-hero:hover {
+    background: #e64a19;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero {
+        height: 50vh;
+    }
+
+    .hero-content h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Confianza */
+
+/* Sección confianza - ESTRUCTURA GARANTIZADA */
+.confianza {
+  padding: 80px 5%;
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  border-radius: 25px;
+  margin: 60px 5%;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  position: relative;
+  border: 3px solid rgba(76, 175, 80, 0.15);
+}
+
+.confianza-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 60px;
+}
+
+/* Columnas */
+.columna-izquierda,
+.columna-derecha {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+}
+
+.columna-izquierda {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.columna-derecha {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* Imágenes grandes y controladas */
+.imagen-contenedor {
+  width: 100%;
+  margin: 15px 0;
+}
+
+.imagen-contenedor img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  border: 5px solid white;
+  transition: all 0.4s ease;
+  display: block;
+}
+
+.imagen-contenedor img:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+}
+
+/* Títulos */
+.columna-izquierda h3,
+.columna-derecha h3 {
+  font-size: 2.2rem;
+  color: #2e7d32;
+  margin-bottom: 25px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  width: 100%;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Textos */
+.columna-izquierda p,
+.columna-derecha p {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1b5e20;
+  line-height: 1.7;
+  margin-top: 20px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  border: 2px solid rgba(76, 175, 80, 0.2);
+  width: 100%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .confianza-container {
+    flex-direction: column;
+    gap: 50px;
+  }
+  
+  .columna-izquierda,
+  .columna-derecha {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .imagen-contenedor img {
+    height: 280px;
+  }
+  
+  .columna-izquierda h3,
+  .columna-derecha h3 {
+    font-size: 1.8rem;
+  }
+  
+  .columna-izquierda p,
+  .columna-derecha p {
+    font-size: 1.2rem;
+  }
+}
+
+/* ===== Footer ===== */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 40px;
+    background-color: #f1f8f4; /* verde muy suave */
+    border-top: 2px solid #e0e0e0;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.footer a {
+    color: #2a7a44;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #1d5c33;
+}
+
+.footer-left p {
+    margin: 5px 0;
+}
+
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    .footer-right {
+        margin-top: 15px;
+        align-items: center;
+    }
+}
+
+/* Hero de frutas */
+.hero-frutas {
+  background: url('../img/frutas\ hero.png') no-repeat center center/cover;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.hero-frutas::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.3);
+}
+
+.hero-frutas .hero-text {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-frutas h1 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Texto destacado */
+.intro-frutas {
+  text-align: center;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+.intro-frutas p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #f57c00; /* naranja vibrante */
+}
+
+/* Subsecciones de frutas */
+.frutas-subsecciones {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.fruta-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  flex: 1 1 300px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.fruta-card:hover {
+  transform: translateY(-5px);
+}
+
+.fruta-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.fruta-card h2 {
+  margin: 15px 0 10px;
+  color: #2c7a3f;
+}
+
+.fruta-card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #f57c00;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #ef6c00;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .frutas-subsecciones {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #f57c00;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #ef6c00;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .frutas-subsecciones {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ---------- TEXTO INTRO VERDURAS ---------- */
+.intro-verduras {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.intro-verduras p {
+  font-family: 'Poppins', sans-serif; /* tipografía moderna */
+  font-size: 26px;
+  font-weight: 700; /* negrita */
+  color: #2c7a3f;  /* verde */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+/* línea decorativa debajo */
+.intro-verduras p::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #2c7a3f;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+/* ---------- HERO JUGOS ---------- */
+.hero-jugos {
+  background: url('../img/hero\ jugos.jpg') center center / cover no-repeat;
+  height: 220px;                 /* ajusta aquí la altura del banner */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 18px;
+  border-radius: 6px;
+}
+
+.hero-jugos::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.28);  /* overlay para contraste */
+}
+
+.hero-jugos .hero-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-jugos h1 {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---------- INTRO JUGOS ---------- */
+.intro-jugos {
+  text-align: center;
+  margin: 18px 0 28px;
+}
+.intro-jugos p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #e67e22; /* naranja jugoso */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---------- TARJETAS (cards) ---------- */
+.jugos-subsecciones {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+  max-width: 1200px;
+}
+
+.jugos-card {
+  background: #fff;
+  width: 340px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  overflow: hidden;
+  text-align: center;
+  padding: 16px;
+  transition: transform .25s ease, box-shadow .25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.jugos-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform .4s ease;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.jugos-card h3 {
+  color: #2c7a3f;
+  margin: 6px 0 8px;
+  font-size: 1.15rem;
+}
+
+.jugos-card p {
+  color: #555;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+/* hover: elevación + zoom imagen */
+.jugos-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.16);
+}
+.jugos-card:hover img {
+  transform: scale(1.06);
+}
+
+/* Usa la misma clase .btn que ya tienes para el botón, si no existe se ve así: */
+.jugos-card .btn {
+  margin-top: auto; /* empuja el botón abajo si el texto es corto */
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-jugos { height: 180px; }
+  .jugos-card { width: 46%; } /* dos columnas */
+}
+
+@media (max-width: 600px) {
+  .hero-jugos { height: 150px; }
+  .jugos-card { width: 100%; } /* una columna en móvil */
+  .intro-jugos p { font-size: 18px; }
+}
+
+
+
+
+/* ---------- HERO HIERBAS ---------- */
+.hero-hierbas {
+  background: url('../img/hero\ hierbas.jpg') center center / cover no-repeat;
+  height: 220px;                 /* ajusta la altura */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 18px;
+  border-radius: 6px;
+}
+
+.hero-hierbas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.28);  /* overlay oscuro */
+}
+
+.hero-hierbas .hero-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-hierbas h1 {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---------- INTRO HIERBAS ---------- */
+.intro-hierbas {
+  text-align: center;
+  margin: 18px 0 28px;
+}
+.intro-hierbas p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #388e3c; /* verde natural */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---------- TARJETAS HIERBAS ---------- */
+.hierbas-subsecciones {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+  max-width: 1200px;
+}
+
+.hierba-card {
+  background: #fff;
+  width: 340px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  overflow: hidden;
+  text-align: center;
+  padding: 16px;
+  transition: transform .25s ease, box-shadow .25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hierba-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform .4s ease;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.hierba-card h3 {
+  color: #2c7a3f;
+  margin: 6px 0 8px;
+  font-size: 1.15rem;
+}
+
+.hierba-card p {
+  color: #555;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+/* hover efecto */
+.hierba-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.16);
+}
+.hierba-card:hover img {
+  transform: scale(1.06);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-hierbas { height: 180px; }
+  .hierba-card { width: 46%; }
+}
+
+@media (max-width: 600px) {
+  .hero-hierbas { height: 150px; }
+  .hierba-card { width: 100%; }
+  .intro-hierbas p { font-size: 18px; }
+}
+
+
+/* =============================
+   ESTILOS DEL CARRITO
+============================= */
+
+/* Icono del carrito en el header */
+.carrito {
+  position: relative;
+  margin-left: 20px;
+}
+
+.carrito img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.contador-carrito {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #e53935;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Sidebar del carrito */
+.carrito-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 380px;
+  height: 100vh;
+  background: white;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  z-index: 1001;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.carrito-sidebar.active {
+  right: 0;
+}
+
+/* Overlay cuando el carrito está abierto */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+}
+
+/* Encabezado del carrito */
+.carrito-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.carrito-header h2 {
+  margin: 0;
+  color: #2c7a3f;
+}
+
+.cerrar-carrito {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+/* Lista de productos en el carrito */
+.lista-carrito {
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.item-carrito {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.item-carrito img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+.info-item {
+  flex: 1;
+}
+
+.info-item h4 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+}
+
+.info-item p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.controles-item {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.cantidad-input {
+  width: 50px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+  margin: 0 5px;
+}
+
+.unidad-select {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.eliminar-item {
+  background: none;
+  border: none;
+  color: #e53935;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+/* Total y botones del carrito */
+.carrito-total {
+  padding: 15px 0;
+  border-top: 1px solid #eee;
+  margin-bottom: 15px;
+}
+
+.carrito-total p {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.botones-carrito {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-vaciar, .btn-comprar {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-vaciar {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.btn-comprar {
+  background: #2c7a3f;
+  color: white;
+}
+
+.btn-vaciar:hover {
+  background: #e0e0e0;
+}
+
+.btn-comprar:hover {
+  background: #256d35;
+}
+
+.carrito-vacio {
+  text-align: center;
+  padding: 40px 0;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .carrito-sidebar {
+    width: 100%;
+    right: -100%;
+  }
+}
+
+/* Mejoras para la sincronización visual */
+.btn-carrito.retirar {
+    background: #d32f2f !important;
+}
+
+.btn-carrito.retirar:hover {
+    background: #c62828 !important;
+}
+
+/* Asegurar que los botones sean consistentes */
+.btn-carrito {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.btn-carrito:hover {
+    background: #256628;
+}
+
+/* Mejorar los controles del carrito */
+.controles-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.controles-item button {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+    min-width: 30px;
+}
+
+.controles-item button:hover {
+    background: #e0e0e0;
+}
+
+.cantidad-input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.unidad-select {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+}
+
+.eliminar-item {
+    background: #ffebee !important;
+    color: #d32f2f;
+    border: 1px solid #ffcdd2 !important;
+}
+
+.eliminar-item:hover {
+    background: #ffcdd2 !important;
+}
+
+
+
+
+
+
+/* =============================
+   ESTILOS PARA SISTEMA DE PESO EN CARRITO
+============================= */
+
+/* Controles de peso en el carrito */
+.controles-peso {
+    margin: 15px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.selector-unidad, .controles-cantidad {
+    margin-bottom: 12px;
+}
+
+.selector-unidad:last-child, .controles-cantidad:last-child {
+    margin-bottom: 0;
+}
+
+.selector-unidad label, .controles-cantidad label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+.unidad-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 2px solid #2c7a3f;
+    border-radius: 6px;
+    background: white;
+    font-size: 14px;
+}
+
+/* Botones de cantidad en carrito */
+.botones-cantidad {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.botones-cantidad button {
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    background: #f8f9fa;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.2s;
+    min-width: 40px;
+}
+
+.botones-cantidad button:hover {
+    background: #2c7a3f;
+    color: white;
+    border-color: #2c7a3f;
+}
+
+.cantidad-input {
+    width: 80px;
+    padding: 6px;
+    border: 2px solid #2c7a3f;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Precio unitario y subtotal */
+.precio-unitario {
+    font-weight: bold;
+    color: #2c7a3f;
+    margin: 5px 0;
+}
+
+.subtotal {
+    font-weight: bold;
+    color: #2c7a3f;
+    margin: 10px 0;
+    font-size: 16px;
+    padding: 8px;
+    background: #e8f5e9;
+    border-radius: 6px;
+    text-align: center;
+}
+
+/* Botón eliminar */
+.eliminar-item {
+    width: 100%;
+    padding: 10px;
+    background: #ffebee;
+    color: #d32f2f;
+    border: 2px solid #ffcdd2;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.eliminar-item:hover {
+    background: #ffcdd2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .botones-cantidad {
+        justify-content: center;
+    }
+    
+    .botones-cantidad button {
+        flex: 1;
+        min-width: 50px;
+    }
+    
+    .cantidad-input {
+        width: 70px;
+    }
+    
+    .controles-peso {
+        padding: 10px;
+    }
+}
+
+
+
+
+/* Hero ofertas */
+.hero-ofertas {
+  background-color: #166534; /* verde tipo cañaveral */
+  color: white;
+  text-align: center;
+  padding: 80px 20px 60px;
+}
+
+.hero-ofertas h1 {
+  font-size: 60px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.hero-ofertas p {
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+/* Productos */
+.productos-ofertas {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 60px 40px;
+  flex-wrap: wrap;
+}
+
+.producto {
+  position: relative;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  width: 280px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.producto:hover {
+  transform: translateY(-5px);
+}
+
+.producto img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.etiqueta-descuento {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #facc15; /* amarillo */
+  color: black;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.precio {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.precio-original {
+  text-decoration: line-through;
+  color: gray;
+  margin-right: 8px;
+}
+
+.precio-descuento {
+  color: #166534;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.btn-carrito {
+  background: #166534;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-size: 15px;
+}
+
+.btn-carrito:hover {
+  background: #14532d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .productos-ofertas {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+
+
+
+/* Estilos mejorados para el carrito */
+.botones-cantidad-mejorado {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.btn-cantidad {
+    background: #2c7a3f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 8px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.3s;
+}
+
+.btn-cantidad:hover {
+    background: #256d35;
+}
+
+.cantidad-display {
+    padding: 5px 10px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    font-weight: bold;
+    min-width: 80px;
+    text-align: center;
+}
+
+.controles-cantidad {
+    margin-top: 10px;
+}
+
+.controles-cantidad label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.selector-unidad {
+    margin-bottom: 10px;
+}
+
+.selector-unidad label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.selector-unidad select {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+}
+
+.item-carrito {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    align-items: flex-start;
+}
+
+.item-carrito img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.info-item {
+    flex: 1;
+}
+
+.info-item h4 {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.precio-unitario {
+    margin: 0 0 10px 0;
+    color: #2c7a3f;
+    font-weight: bold;
+}
+
+.subtotal {
+    margin: 10px 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.eliminar-item {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.eliminar-item:hover {
+    background: #c82333;
+}
+
+.carrito-vacio {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Estilos para botones de carrito en estado "retirar" */
+.btn-carrito.retirar {
+    background: #d32f2f;
+}
+
+.btn-carrito.retirar:hover {
+    background: #b71c1c;
+}
+
+.logo a {
+    text-decoration: none;  /* Quita el subrayado del enlace */
+    color: inherit;         /* Hereda el color actual del texto */
+    font-family: inherit;   /* Hereda la tipografía actual */
+    font-size: inherit;     /* Hereda el tamaño actual */
+    font-weight: inherit;   /* Hereda el grosor de la fuente */
+}
+
+/* Opcional: efecto al pasar el mouse */
+.logo a:hover {
+    opacity: 0.8;  /* Ligero efecto de transparencia */
+    /* O el efecto hover que prefieras */
+}
