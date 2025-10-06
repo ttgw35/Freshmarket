@@ -184,17 +184,16 @@ function vaciarCarrito() {
 }
 
 // Finalizar compra
+// Finalizar compra - MODIFICADA para redirigir a pasarela de pago
 function finalizarCompra() {
     if (carrito.length === 0) {
         mostrarMensaje('Tu carrito está vacío');
         return;
     }
 
-    mostrarMensaje('¡Gracias por tu compra!');
-    vaciarCarrito();
-    cerrarCarritoHandler();
+    // Redirigir a la página de pago
+    window.location.href = 'pago.html';
 }
-
 // Actualizar contador del carrito
 function actualizarContadorCarrito(cantidad) {
     const contador = document.querySelector('.contador-carrito');
