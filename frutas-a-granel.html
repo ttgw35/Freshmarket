@@ -542,7 +542,7 @@
     </nav>
   </header>
 
-  <!-- ---------- SCRIPT PARA BÚSQUEDA Y MENÚ ---------- -->
+ <!-- ---------- SCRIPT PARA BÚSQUEDA Y MENÚ ---------- -->
   <script>
     // Base de datos de productos para búsqueda
     const productosDB = [
@@ -590,7 +590,7 @@
         id: 'lulo',
         nombre: 'Lulo',
         precio: 3050,
-        imagen: 'img/lulo a granel.png',
+        imagen: 'img/lulo.granel.png',
         categoria: 'Jugos',
         url: 'lulo.html'
       }, 
@@ -622,17 +622,9 @@
         id: 'Pulpa de maracuyá',
         nombre: 'Pulpa de maracuyá',
         precio: 3400,
-        imagen: 'img/pulpa maracuya.png',
+        imagen: 'img/pulpa maracuyá.png',
         categoria: 'Pulpas',
         url: 'pulpa-de-maracuya.html'
-      }, 
-      {
-        id: 'Oregano',
-        nombre: 'Orégano',
-        precio: 790,
-        imagen: 'img/oregano.png',
-        categoria: 'Hierbas',
-        url: 'oregano.html'
       }, 
       {
         id: 'Tomate de árbol',
@@ -644,11 +636,27 @@
       }, 
       {
         id: 'Oregano',
-        nombre: 'Orégano',
+        nombre: 'Oregano',
         precio: 790,
         imagen: 'img/oregano.png',
         categoria: 'Hierbas',
         url: 'oregano.html'
+      }, 
+      {
+        id: 'Albahaca',
+        nombre: 'Albahaca',
+        precio: 2200,
+        imagen: 'img/albahaca.png',
+        categoria: 'Hierbas aromáticas',
+        url: 'albahaca.html'
+      }, 
+      {
+        id: 'Hierbabuena',
+        nombre: 'Hierbabuena',
+        precio: 5200,
+        imagen: 'img/hierbabuena.png',
+        categoria: 'Hierbas medicinales',
+        url: 'hierbabuena.html'
       }, 
       {
         id: 'Naranja',
@@ -723,6 +731,14 @@
         url: 'papaya.html'
       },
       {
+        id: 'Guanabana',
+        nombre: 'guanábana',
+        precio: 5460,
+        imagen: 'img/guanaba.png',
+        categoria: 'Frutas poco comunes',
+        url: 'guanabana.html'
+      },
+      {
         id: 'aguacate',
         nombre: 'Aguacate',
         precio: 2250,
@@ -771,6 +787,7 @@
         url: 'lechuga.html'
       }
     ];
+
 
     // Elementos del DOM
     const searchInput = document.getElementById('search-input');

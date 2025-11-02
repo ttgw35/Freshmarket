@@ -3,317 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Freshmarket</title>
+  <title>Freshmarket - Papaya</title>
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    /* ---------- HEADER ---------- */
-    header {
-      background-color: #fff;
-      border-bottom: 2px solid #e5e5e5;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      position: relative;
-    }
-
-    .top-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      font-size: 26px;
-      font-weight: bold;
-      color: #2c7a3f;
-      flex: 1;
-      text-align: center;
-    }
-
-    .logo a {
-      color: #2c7a3f;
-      text-decoration: none;
-    }
-
-    .hamburger {
-      display: none;
-      font-size: 26px;
-      cursor: pointer;
-      color: #2c7a3f;
-    }
-
-    .carrito {
-      position: relative;
-    }
-
-    .carrito img {
-      width: 26px;
-      height: 26px;
-    }
-
-    /* ---------- SEARCH BAR ---------- */
-    .search-container {
-      flex: 1;
-      margin-left: 40px;
-      max-width: 600px;
-      position: relative;
-    }
-
-    .search-bar {
-      display: flex;
-      position: relative;
-    }
-
-    .search-bar input {
-      flex: 1;
-      padding: 10px 15px;
-      border: 2px solid #2c7a3f;
-      border-radius: 25px 0 0 25px;
-      outline: none;
-    }
-
-    .search-bar button {
-      padding: 10px 20px;
-      border: none;
-      background: #2c7a3f;
-      color: white;
-      border-radius: 0 25px 25px 0;
-      cursor: pointer;
-    }
-
-    /* ---------- NAV ---------- */
-    .main-nav {
-      background-color: #2c7a3f;
-    }
-
-    .main-nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .main-nav ul li a {
-      display: block;
-      padding: 14px 22px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .main-nav ul li a:hover {
-      background-color: #256d35;
-    }
-
-    /* ---------- PRODUCTO DETALLE ---------- */
-    .producto-detalle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 50px;
-      padding: 50px 20px;
-      flex-wrap: wrap;
-    }
-
-    .producto-detalle img {
-      width: 300px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
-
-    .producto-info {
-      max-width: 500px;
-    }
-
-    .producto-info h1 {
-      font-size: 2rem;
-      color: #2c7a3f;
-      margin-bottom: 10px;
-    }
-
-    .producto-info p {
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 20px;
-    }
-
-    .producto-precio {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #2c7a3f;
-      margin-bottom: 20px;
-    }
-
-    .btn-carrito {
-      padding: 12px 20px;
-      border: 2px solid #2c7a3f;
-      background: #fff;
-      color: #2c7a3f;
-      font-size: 1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .btn-carrito:hover {
-      background: #2c7a3f;
-      color: #fff;
-    }
-
-    /* ---------- VOLVER ---------- */
-    .volver {
-      display: flex;
-      align-items: center;
-      margin: 20px;
-      text-decoration: none;
-      color: #2c7a3f;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-
-    .volver:hover {
-      text-decoration: underline;
-    }
-
-    .volver span {
-      margin-left: 8px;
-    }
-
-    /* ---------- FOOTER ---------- */
-    .footer {
-      background: #2c7a3f;
-      color: white;
-      padding: 40px 20px;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .footer-left, .footer-right {
-      flex: 1;
-      min-width: 300px;
-      margin-bottom: 20px;
-    }
-
-    .footer-right {
-      text-align: right;
-    }
-
-    .footer-right a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      margin: 5px 0;
-    }
-
-    .footer-right a:hover {
-      text-decoration: underline;
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 768px) {
-      /* Reorganizar header */
-      .top-header {
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .hamburger {
-        display: block;
-        order: 1;
-      }
-
-      .logo {
-        order: 2;
-        text-align: center;
-        flex: 1;
-      }
-
-      .carrito {
-        order: 3;
-      }
-
-      /* Mostrar buscador abajo */
-      .search-container {
-        display: block;
-        width: 100%;
-        order: 4;
-        margin: 10px 0 0 0;
-        padding: 0 10px;
-      }
-
-      .search-bar input {
-        width: 100%;
-        border-radius: 25px;
-      }
-
-      .search-bar button {
-        display: none;
-      }
-
-      /* Nav móvil */
-      .main-nav ul {
-        flex-direction: column;
-        display: none;
-        text-align: center;
-      }
-
-      .main-nav.active ul {
-        display: flex;
-      }
-
-      /* Producto detalle */
-      .producto-detalle {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-      }
-
-      .producto-detalle img {
-        width: 80%;
-        max-width: 250px;
-      }
-
-      .producto-info {
-        max-width: 90%;
-      }
-
-      .producto-info h1 {
-        font-size: 1.8rem;
-      }
-
-      .producto-info p {
-        font-size: 0.95rem;
-      }
-    }
-  </style>
+    <link rel="stylesheet" href="css/responsive.css">
+ 
 </head>
-<body>
 
+<body>
   <!-- ---------- HEADER ---------- -->
   <header>
+    <!-- fila superior: logo + búsqueda + hamburguesa -->
     <div class="top-header">
-      <div class="hamburger">☰</div>
-      <div class="logo"><a href="index.html">Freshmarket</a></div>
-      <div class="carrito">
-        <a href="#"><img src="img/carrito.png" alt="Carrito"></a>
+      <div class="logo">
+        <a href="index.html">Freshmarket</a>
       </div>
+
       <div class="search-container">
         <div class="search-bar">
-          <input type="text" id="search-input" placeholder="Buscar en Freshmarket...">
+          <input type="text" id="search-input" placeholder="¿Qué producto estás buscando?">
           <button id="search-button">🔍</button>
         </div>
+        <div class="suggestions-container" id="suggestions-container">
+          <!-- Las sugerencias se cargarán aquí dinámicamente -->
+        </div>
       </div>
+
+      <div class="carrito">
+        <a href="#">
+          <img src="img/carrito.png" alt="Carrito">
+          <span class="contador-carrito">0</span>
+        </a>
+      </div>
+
+      <div class="hamburger">☰</div>
     </div>
 
+    <!-- fila inferior: categorías -->
     <nav class="main-nav">
       <ul>
         <li><a href="index.html">Inicio</a></li>
@@ -325,6 +50,464 @@
       </ul>
     </nav>
   </header>
+
+ <!-- ---------- SCRIPT PARA BÚSQUEDA Y MENÚ ---------- -->
+  <script>
+    // Base de datos de productos para búsqueda
+    const productosDB = [
+      {
+        id: 'piña',
+        nombre: 'Piña',
+        precio: 2500,
+        imagen: 'img/pina.png',
+        categoria: 'Frutas',
+        url: 'frutas-tropicales.html'
+      },
+      {
+        id: 'plátano',
+        nombre: 'Plátano',
+        precio: 1800,
+        imagen: 'img/platano.png',
+        categoria: 'Frutas',
+        url: 'frutas-populares.html'
+      },
+      {
+        id: 'Gulupa',
+        nombre: 'Gulupa',
+        precio: 9000,
+        imagen: 'img/gulupa.png',
+        categoria: 'Frutas',
+        url: 'gulupa.html'
+      }, 
+       {
+        id: 'zanahoria',
+        nombre: 'zanahoria',
+        precio: 3320,
+        imagen: 'img/zanahoria.png',
+        categoria: 'verduras',
+        url: 'zanahoria.html'
+      }, 
+       {
+        id: 'remolacha',
+        nombre: 'remolacha',
+        precio: 2790,
+        imagen: 'img/remolacha.png',
+        categoria: 'verduras',
+        url: 'remolacha.html'
+      }, 
+       {
+        id: 'lulo',
+        nombre: 'Lulo',
+        precio: 3050,
+        imagen: 'img/lulo.granel.png',
+        categoria: 'Jugos',
+        url: 'lulo.html'
+      }, 
+       {
+        id: 'Mora',
+        nombre: 'Mora',
+        precio: 6200,
+        imagen: 'img/mora.png',
+        categoria: 'Jugos',
+        url: 'mora.html'
+      }, 
+      {
+        id: 'Oregano',
+        nombre: 'Orégano',
+        precio: 790,
+        imagen: 'img/oregano.png',
+        categoria: 'Hierbas',
+        url: 'oregano.html'
+      }, 
+       {
+        id: 'Pulpa de mango',
+        nombre: 'Pulpa de mango',
+        precio: 1720,
+        imagen: 'img/pulpa mango.png',
+        categoria: 'Pulpas',
+        url: 'pulpa-de-mango.html'
+      }, 
+       {
+        id: 'Pulpa de maracuyá',
+        nombre: 'Pulpa de maracuyá',
+        precio: 3400,
+        imagen: 'img/pulpa maracuyá.png',
+        categoria: 'Pulpas',
+        url: 'pulpa-de-maracuya.html'
+      }, 
+      {
+        id: 'Tomate de árbol',
+        nombre: 'Tomate de árbol',
+        precio: 1400,
+        imagen: 'img/tomate de arbol.jpg',
+        categoria: 'frutas',
+        url: 'tomatearbol.html'
+      }, 
+      {
+        id: 'Oregano',
+        nombre: 'Oregano',
+        precio: 790,
+        imagen: 'img/oregano.png',
+        categoria: 'Hierbas',
+        url: 'oregano.html'
+      }, 
+      {
+        id: 'Albahaca',
+        nombre: 'Albahaca',
+        precio: 2200,
+        imagen: 'img/albahaca.png',
+        categoria: 'Hierbas aromáticas',
+        url: 'albahaca.html'
+      }, 
+      {
+        id: 'Hierbabuena',
+        nombre: 'Hierbabuena',
+        precio: 5200,
+        imagen: 'img/hierbabuena.png',
+        categoria: 'Hierbas medicinales',
+        url: 'hierbabuena.html'
+      }, 
+      {
+        id: 'Naranja',
+        nombre: 'Naranja',
+        precio: 1700,
+        imagen: 'img/naranja.jpg',
+        categoria: 'frutas',
+        url: 'naranja.html'
+      }, 
+      {
+        id: 'Manzanilla',
+        nombre: 'Manzanilla',
+        precio: 3200,
+        imagen: 'img/manzanilla.png',
+        categoria: 'hierbas',
+        url: 'manzanilla.html'
+      }, 
+      {
+        id: 'Limon Tahití',
+        nombre: 'limón',
+        precio: 2320,
+        imagen: 'img/limon.png',
+        categoria: 'oferta',
+        url: 'limon.html'
+      }, 
+      {
+        id: 'Cebolla cabezona',
+        nombre: 'Cebolla cabezona',
+        precio: 2170,
+        imagen: 'img/gulupa.png',
+        categoria: 'oferta',
+        url: 'cebolla.html'
+      }, 
+      {
+        id: 'granadilla',
+        nombre: 'granadilla',
+        precio: 4524,
+        imagen: 'img/granadilla.png',
+        categoria: 'oferta',
+        url: 'granadilla.html'
+      }, 
+      {
+        id: 'tomate',
+        nombre: 'Tomate',
+        precio: 2200,
+        imagen: 'img/tomate.png',
+        categoria: 'Verduras',
+        url: 'verduras.html'
+      },
+      {
+        id: 'papa',
+        nombre: 'Papa',
+        precio: 1500,
+        imagen: 'img/papa.png',
+        categoria: 'Verduras',
+        url: 'verduras.html'
+      },
+      {
+        id: 'mango',
+        nombre: 'Mango',
+        precio: 2250,
+        imagen: 'img/mango.png',
+        categoria: 'Frutas Tropicales',
+        url: 'mango.html'
+      },
+      {
+        id: 'papaya',
+        nombre: 'Papaya',
+        precio: 2200,
+        imagen: 'img/papaya.png',
+        categoria: 'Frutas Tropicales',
+        url: 'papaya.html'
+      },
+      {
+        id: 'Guanabana',
+        nombre: 'guanábana',
+        precio: 5460,
+        imagen: 'img/guanaba.png',
+        categoria: 'Frutas poco comunes',
+        url: 'guanabana.html'
+      },
+      {
+        id: 'aguacate',
+        nombre: 'Aguacate',
+        precio: 2250,
+        imagen: 'img/aguacate.png',
+        categoria: 'Frutas Tropicales',
+        url: 'aguacate.html'
+      },
+      {
+        id: 'manzana-roja',
+        nombre: 'Manzana Roja',
+        precio: 5200,
+        imagen: 'img/manzana roja.png',
+        categoria: 'Productos Frescos',
+        url: 'manzana.html'
+      },
+      {
+        id: 'bananos',
+        nombre: 'Bananos',
+        precio: 1300,
+        imagen: 'img/banano.png',
+        categoria: 'Productos Frescos',
+        url: 'banano.html'
+      },
+      {
+        id: 'uchuva',
+        nombre: 'Uchuva',
+        precio: 9000,
+        imagen: 'img/uchuva.png',
+        categoria: 'Frutas Poco Comunes',
+        url: 'uchuva.html'
+      },
+      {
+        id: 'espinaca',
+        nombre: 'Espinaca',
+        precio: 450,
+        imagen: 'img/espinaca.png',
+        categoria: 'Verduras',
+        url: 'espinaca.html'
+      },
+      {
+        id: 'lechuga',
+        nombre: 'Lechuga',
+        precio: 1250,
+        imagen: 'img/lechuga.png',
+        categoria: 'Verduras',
+        url: 'lechuga.html'
+      }
+    ];
+
+    // Elementos del DOM
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+    const suggestionsContainer = document.getElementById('suggestions-container');
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.main-nav');
+
+    // Función para buscar productos
+    function buscarProductos(termino) {
+      if (!termino) return [];
+      
+      const terminoLower = termino.toLowerCase();
+      return productosDB.filter(producto => 
+        producto.nombre.toLowerCase().includes(terminoLower) ||
+        producto.categoria.toLowerCase().includes(terminoLower)
+      );
+    }
+
+    // Función para mostrar sugerencias
+    function mostrarSugerencias(productos) {
+      suggestionsContainer.innerHTML = '';
+      
+      if (productos.length === 0) {
+        suggestionsContainer.innerHTML = '<div class="no-results">No se encontraron productos</div>';
+        suggestionsContainer.style.display = 'block';
+        return;
+      }
+
+      // Mostrar máximo 5 sugerencias
+      const productosMostrar = productos.slice(0, 5);
+      
+      productosMostrar.forEach(producto => {
+        const suggestionItem = document.createElement('div');
+        suggestionItem.className = 'suggestion-item';
+        suggestionItem.innerHTML = `
+          <img src="${producto.imagen}" alt="${producto.nombre}" onerror="this.src='img/placeholder.png'">
+          <div class="suggestion-info">
+            <div class="suggestion-name">${producto.nombre}</div>
+            <div class="suggestion-price">$${producto.precio.toLocaleString()} / libra</div>
+          </div>
+          <span class="suggestion-category">${producto.categoria}</span>
+        `;
+        
+        suggestionItem.addEventListener('click', () => {
+          window.location.href = producto.url;
+          suggestionsContainer.style.display = 'none';
+        });
+        
+        suggestionsContainer.appendChild(suggestionItem);
+      });
+      
+      suggestionsContainer.style.display = 'block';
+    }
+
+    // Función para realizar búsqueda
+    function realizarBusqueda() {
+      const termino = searchInput.value.trim();
+      if (termino) {
+        const resultados = buscarProductos(termino);
+        if (resultados.length > 0) {
+          window.location.href = resultados[0].url;
+        }
+      }
+      suggestionsContainer.style.display = 'none';
+    }
+
+    // Event Listeners para búsqueda
+    if (searchInput && suggestionsContainer) {
+      searchInput.addEventListener('input', (e) => {
+        const termino = e.target.value.trim();
+        if (termino.length > 1) {
+          const resultados = buscarProductos(termino);
+          mostrarSugerencias(resultados);
+        } else {
+          suggestionsContainer.style.display = 'none';
+        }
+      });
+
+      searchInput.addEventListener('focus', () => {
+        const termino = searchInput.value.trim();
+        if (termino.length > 1) {
+          const resultados = buscarProductos(termino);
+          mostrarSugerencias(resultados);
+        }
+      });
+
+      if (searchButton) {
+        searchButton.addEventListener('click', realizarBusqueda);
+      }
+
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          realizarBusqueda();
+        }
+      });
+
+      // Cerrar sugerencias al hacer clic fuera
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-container')) {
+          suggestionsContainer.style.display = 'none';
+        }
+      });
+    }
+
+    // Menú hamburguesa
+    if (hamburger && nav) {
+      hamburger.addEventListener('click', () => {
+        nav.classList.toggle('active');
+      });
+    }
+
+    // Cerrar menú al hacer clic en un enlace (en móviles)
+    document.querySelectorAll('.main-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+      });
+    });
+  </script>
+
+  <!-- ---------- CARRITO DE COMPRAS ---------- -->
+  <!-- Overlay para el carrito -->
+  <div class="overlay"></div>
+  <!-- Sidebar del carrito -->
+  <div class="carrito-sidebar">
+    <div class="carrito-header">
+      <h2>Tu Carrito</h2>
+      <button class="cerrar-carrito">×</button>
+    </div>
+    
+    <div class="lista-carrito">
+      <!-- Los productos del carrito se agregarán aquí dinámicamente -->
+    </div>
+    
+    <div class="carrito-total">
+      <p>Total: <span class="total-carrito">$0</span></p>
+    </div>
+    
+    <div class="botones-carrito">
+      <button class="btn-vaciar">Vaciar Carrito</button>
+      <button class="btn-comprar">Finalizar Compra</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<style>
+    .producto-detalle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      padding: 50px 20px;
+    }
+    .producto-detalle img {
+      width: 300px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .producto-info {
+      max-width: 500px;
+    }
+    .producto-info h1 {
+      font-size: 2rem;
+      color: #2c7a3f;
+      margin-bottom: 10px;
+    }
+    .producto-info p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .producto-precio {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2c7a3f;
+      margin-bottom: 20px;
+    }
+    .btn-carrito {
+      padding: 12px 20px;
+      border: 2px solid #2c7a3f;
+      background: #fff;
+      color: #2c7a3f;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-carrito:hover {
+      background: #2c7a3f;
+      color: #fff;
+    }
+    .volver {
+      display: flex;
+      align-items: center;
+      margin: 20px;
+      text-decoration: none;
+      color: #2c7a3f;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .volver:hover {
+      text-decoration: underline;
+    }
+    .volver span {
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
 
   <!-- ---------- BOTÓN VOLVER ---------- -->
   <a href="frutas-tropicales.html" class="volver">⬅ <span>Volver a Frutas Tropicales</span></a>
@@ -354,13 +537,5 @@
     </div>
   </footer>
 
-  <script>
-    // Toggle menú hamburguesa
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('.main-nav');
-    hamburger.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
-  </script>
 </body>
 </html>

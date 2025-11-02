@@ -541,8 +541,7 @@
       </ul>
     </nav>
   </header>
-
-  <!-- ---------- SCRIPT PARA BÚSQUEDA Y MENÚ ---------- -->
+ <!-- ---------- SCRIPT PARA BÚSQUEDA Y MENÚ ---------- -->
   <script>
     // Base de datos de productos para búsqueda
     const productosDB = [
@@ -562,6 +561,142 @@
         categoria: 'Frutas',
         url: 'frutas-populares.html'
       },
+      {
+        id: 'Gulupa',
+        nombre: 'Gulupa',
+        precio: 9000,
+        imagen: 'img/gulupa.png',
+        categoria: 'Frutas',
+        url: 'gulupa.html'
+      }, 
+       {
+        id: 'zanahoria',
+        nombre: 'zanahoria',
+        precio: 3320,
+        imagen: 'img/zanahoria.png',
+        categoria: 'verduras',
+        url: 'zanahoria.html'
+      }, 
+       {
+        id: 'remolacha',
+        nombre: 'remolacha',
+        precio: 2790,
+        imagen: 'img/remolacha.png',
+        categoria: 'verduras',
+        url: 'remolacha.html'
+      }, 
+       {
+        id: 'lulo',
+        nombre: 'Lulo',
+        precio: 3050,
+        imagen: 'img/lulo.granel.png',
+        categoria: 'Jugos',
+        url: 'lulo.html'
+      }, 
+       {
+        id: 'Mora',
+        nombre: 'Mora',
+        precio: 6200,
+        imagen: 'img/mora.png',
+        categoria: 'Jugos',
+        url: 'mora.html'
+      }, 
+      {
+        id: 'Oregano',
+        nombre: 'Orégano',
+        precio: 790,
+        imagen: 'img/oregano.png',
+        categoria: 'Hierbas',
+        url: 'oregano.html'
+      }, 
+       {
+        id: 'Pulpa de mango',
+        nombre: 'Pulpa de mango',
+        precio: 1720,
+        imagen: 'img/pulpa mango.png',
+        categoria: 'Pulpas',
+        url: 'pulpa-de-mango.html'
+      }, 
+       {
+        id: 'Pulpa de maracuyá',
+        nombre: 'Pulpa de maracuyá',
+        precio: 3400,
+        imagen: 'img/pulpa maracuyá.png',
+        categoria: 'Pulpas',
+        url: 'pulpa-de-maracuya.html'
+      }, 
+      {
+        id: 'Tomate de árbol',
+        nombre: 'Tomate de árbol',
+        precio: 1400,
+        imagen: 'img/tomate de arbol.jpg',
+        categoria: 'frutas',
+        url: 'tomatearbol.html'
+      }, 
+      {
+        id: 'Oregano',
+        nombre: 'Oregano',
+        precio: 790,
+        imagen: 'img/oregano.png',
+        categoria: 'Hierbas',
+        url: 'oregano.html'
+      }, 
+      {
+        id: 'Albahaca',
+        nombre: 'Albahaca',
+        precio: 2200,
+        imagen: 'img/albahaca.png',
+        categoria: 'Hierbas aromáticas',
+        url: 'albahaca.html'
+      }, 
+      {
+        id: 'Hierbabuena',
+        nombre: 'Hierbabuena',
+        precio: 5200,
+        imagen: 'img/hierbabuena.png',
+        categoria: 'Hierbas medicinales',
+        url: 'hierbabuena.html'
+      }, 
+      {
+        id: 'Naranja',
+        nombre: 'Naranja',
+        precio: 1700,
+        imagen: 'img/naranja.jpg',
+        categoria: 'frutas',
+        url: 'naranja.html'
+      }, 
+      {
+        id: 'Manzanilla',
+        nombre: 'Manzanilla',
+        precio: 3200,
+        imagen: 'img/manzanilla.png',
+        categoria: 'hierbas',
+        url: 'manzanilla.html'
+      }, 
+      {
+        id: 'Limon Tahití',
+        nombre: 'limón',
+        precio: 2320,
+        imagen: 'img/limon.png',
+        categoria: 'oferta',
+        url: 'limon.html'
+      }, 
+      {
+        id: 'Cebolla cabezona',
+        nombre: 'Cebolla cabezona',
+        precio: 2170,
+        imagen: 'img/gulupa.png',
+        categoria: 'oferta',
+        url: 'cebolla.html'
+      }, 
+      {
+        id: 'granadilla',
+        nombre: 'granadilla',
+        precio: 4524,
+        imagen: 'img/granadilla.png',
+        categoria: 'oferta',
+        url: 'granadilla.html'
+      }, 
       {
         id: 'tomate',
         nombre: 'Tomate',
@@ -593,6 +728,14 @@
         imagen: 'img/papaya.png',
         categoria: 'Frutas Tropicales',
         url: 'papaya.html'
+      },
+      {
+        id: 'Guanabana',
+        nombre: 'guanábana',
+        precio: 5460,
+        imagen: 'img/guanaba.png',
+        categoria: 'Frutas poco comunes',
+        url: 'guanabana.html'
       },
       {
         id: 'aguacate',
@@ -643,6 +786,7 @@
         url: 'lechuga.html'
       }
     ];
+
 
     // Elementos del DOM
     const searchInput = document.getElementById('search-input');
