@@ -24,12 +24,14 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 20px;
+      flex-wrap: wrap;
     }
 
     .logo {
       font-size: 26px;
       font-weight: bold;
       color: #2c7a3f;
+      order: 1;
     }
 
     .logo a {
@@ -47,6 +49,8 @@
       margin-left: 40px;
       max-width: 600px;
       position: relative;
+      order: 3;
+      width: 100%;
     }
 
     .search-bar {
@@ -60,6 +64,7 @@
       border: 2px solid #2c7a3f;
       border-radius: 25px 0 0 25px;
       outline: none;
+      font-size: 16px; /* Mejor para móviles */
     }
 
     .search-bar button {
@@ -179,12 +184,14 @@
       font-size: 26px;
       cursor: pointer;
       color: #2c7a3f;
+      order: 1;
     }
 
     /* CARRITO */
     .carrito {
       position: relative;
       margin-left: 15px;
+      order: 2;
     }
 
     .carrito a {
@@ -217,14 +224,33 @@
 
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 768px) {
-      .search-container {
-        display: none;
+      .top-header {
+        padding: 10px 15px;
+        gap: 10px;
       }
-
+      
+      .logo {
+        order: 1;
+        flex: 1;
+      }
+      
       .hamburger {
         display: block;
+        order: 0;
       }
-
+      
+      .carrito {
+        order: 2;
+        margin-left: 0;
+      }
+      
+      .search-container {
+        order: 3;
+        margin: 10px 0 0 0;
+        max-width: 100%;
+        display: block !important;
+      }
+      
       .main-nav ul {
         flex-direction: column;
         display: none;
@@ -234,6 +260,61 @@
 
       .main-nav.active ul {
         display: flex;
+      }
+      
+      /* Ajustes para el detalle del producto en móviles */
+      .producto-detalle {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 15px;
+      }
+      
+      .producto-detalle img {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .producto-info {
+        max-width: 100%;
+        text-align: center;
+      }
+      
+      .producto-info h1 {
+        font-size: 1.5rem;
+      }
+      
+      .volver {
+        margin: 15px;
+        font-size: 0.9rem;
+      }
+      
+      /* Ajustes para otros elementos en móviles */
+      .productos-interes {
+        padding: 20px 15px;
+        border-radius: 20px;
+        margin-top: 20px;
+      }
+      
+      .hero {
+        padding: 60px 15px;
+      }
+      
+      .hero-content h2 {
+        font-size: 1.8em;
+      }
+      
+      .categorias, .opciones-compra, .confianza {
+        padding: 40px 15px;
+      }
+      
+      .footer {
+        padding: 30px 15px;
+        flex-direction: column;
+      }
+      
+      .footer-right {
+        text-align: left;
+        margin-top: 20px;
       }
     }
 
@@ -497,6 +578,68 @@
     .footer a[href^="mailto:"] {
       color: white;
     }
+    
+    /* Estilos para el detalle del producto */
+    .producto-detalle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      padding: 50px 20px;
+    }
+    .producto-detalle img {
+      width: 300px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .producto-info {
+      max-width: 500px;
+    }
+    .producto-info h1 {
+      font-size: 2rem;
+      color: #2c7a3f;
+      margin-bottom: 10px;
+    }
+    .producto-info p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .producto-precio {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2c7a3f;
+      margin-bottom: 20px;
+    }
+    .btn-carrito {
+      padding: 12px 20px;
+      border: 2px solid #2c7a3f;
+      background: #fff;
+      color: #2c7a3f;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-carrito:hover {
+      background: #2c7a3f;
+      color: #fff;
+    }
+    .volver {
+      display: flex;
+      align-items: center;
+      margin: 20px;
+      text-decoration: none;
+      color: #2c7a3f;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .volver:hover {
+      text-decoration: underline;
+    }
+    .volver span {
+      margin-left: 8px;
+    }
   </style>
 </head>
 
@@ -505,8 +648,17 @@
   <header>
     <!-- fila superior: logo + búsqueda + hamburguesa -->
     <div class="top-header">
+      <div class="hamburger">☰</div>
+      
       <div class="logo">
         <a href="index.html">Freshmarket</a>
+      </div>
+
+      <div class="carrito">
+        <a href="#">
+          <img src="img/carrito.png" alt="Carrito">
+          <span class="contador-carrito">0</span>
+        </a>
       </div>
 
       <div class="search-container">
@@ -518,15 +670,6 @@
           <!-- Las sugerencias se cargarán aquí dinámicamente -->
         </div>
       </div>
-
-      <div class="carrito">
-        <a href="#">
-          <img src="img/carrito.png" alt="Carrito">
-          <span class="contador-carrito">0</span>
-        </a>
-      </div>
-
-      <div class="hamburger">☰</div>
     </div>
 
     <!-- fila inferior: categorías -->
@@ -570,6 +713,134 @@
         categoria: 'Frutas',
         url: 'gulupa.html'
       }, 
+       {
+        id: 'zanahoria',
+        nombre: 'zanahoria',
+        precio: 3320,
+        imagen: 'img/zanahoria.png',
+        categoria: 'verduras',
+        url: 'zanahoria.html'
+      }, 
+       {
+        id: 'remolacha',
+        nombre: 'remolacha',
+        precio: 2790,
+        imagen: 'img/remolacha.png',
+        categoria: 'verduras',
+        url: 'remolacha.html'
+      }, 
+       {
+        id: 'lulo',
+        nombre: 'Lulo',
+        precio: 3050,
+        imagen: 'img/lulo.granel.png',
+        categoria: 'Jugos',
+        url: 'lulo.html'
+      }, 
+       {
+        id: 'Mora',
+        nombre: 'Mora',
+        precio: 6200,
+        imagen: 'img/mora.png',
+        categoria: 'Jugos',
+        url: 'mora.html'
+      }, 
+      {
+        id: 'Oregano',
+        nombre: 'Orégano',
+        precio: 790,
+        imagen: 'img/oregano.png',
+        categoria: 'Hierbas',
+        url: 'oregano.html'
+      }, 
+       {
+        id: 'Pulpa de mango',
+        nombre: 'Pulpa de mango',
+        precio: 1720,
+        imagen: 'img/pulpa mango.png',
+        categoria: 'Pulpas',
+        url: 'pulpa-de-mango.html'
+      }, 
+       {
+        id: 'Pulpa de maracuyá',
+        nombre: 'Pulpa de maracuyá',
+        precio: 3400,
+        imagen: 'img/pulpa maracuyá.png',
+        categoria: 'Pulpas',
+        url: 'pulpa-de-maracuya.html'
+      }, 
+      {
+        id: 'Tomate de árbol',
+        nombre: 'Tomate de árbol',
+        precio: 1400,
+        imagen: 'img/tomate de arbol.jpg',
+        categoria: 'frutas',
+        url: 'tomatearbol.html'
+      }, 
+      {
+        id: 'Oregano',
+        nombre: 'Oregano',
+        precio: 790,
+        imagen: 'img/oregano.png',
+        categoria: 'Hierbas',
+        url: 'oregano.html'
+      }, 
+      {
+        id: 'Albahaca',
+        nombre: 'Albahaca',
+        precio: 2200,
+        imagen: 'img/albahaca.png',
+        categoria: 'Hierbas aromáticas',
+        url: 'albahaca.html'
+      }, 
+      {
+        id: 'Hierbabuena',
+        nombre: 'Hierbabuena',
+        precio: 5200,
+        imagen: 'img/hierbabuena.png',
+        categoria: 'Hierbas medicinales',
+        url: 'hierbabuena.html'
+      }, 
+      {
+        id: 'Naranja',
+        nombre: 'Naranja',
+        precio: 1700,
+        imagen: 'img/naranja.jpg',
+        categoria: 'frutas',
+        url: 'naranja.html'
+      }, 
+      {
+        id: 'Manzanilla',
+        nombre: 'Manzanilla',
+        precio: 3200,
+        imagen: 'img/manzanilla.png',
+        categoria: 'hierbas',
+        url: 'manzanilla.html'
+      }, 
+      {
+        id: 'Limon Tahití',
+        nombre: 'limón',
+        precio: 2320,
+        imagen: 'img/limon.png',
+        categoria: 'oferta',
+        url: 'limon.html'
+      }, 
+      {
+        id: 'Cebolla cabezona',
+        nombre: 'Cebolla cabezona',
+        precio: 2170,
+        imagen: 'img/gulupa.png',
+        categoria: 'oferta',
+        url: 'cebolla.html'
+      }, 
+      {
+        id: 'granadilla',
+        nombre: 'granadilla',
+        precio: 4524,
+        imagen: 'img/granadilla.png',
+        categoria: 'oferta',
+        url: 'granadilla.html'
+      }, 
       {
         id: 'tomate',
         nombre: 'Tomate',
@@ -601,6 +872,14 @@
         imagen: 'img/papaya.png',
         categoria: 'Frutas Tropicales',
         url: 'papaya.html'
+      },
+      {
+        id: 'Guanabana',
+        nombre: 'guanábana',
+        precio: 5460,
+        imagen: 'img/guanaba.png',
+        categoria: 'Frutas poco comunes',
+        url: 'guanabana.html'
       },
       {
         id: 'aguacate',
@@ -796,75 +1075,7 @@
   </div>
 </div>
 
-
-
-
-<style>
-    .producto-detalle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 50px;
-      padding: 50px 20px;
-    }
-    .producto-detalle img {
-      width: 300px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
-    .producto-info {
-      max-width: 500px;
-    }
-    .producto-info h1 {
-      font-size: 2rem;
-      color: #2c7a3f;
-      margin-bottom: 10px;
-    }
-    .producto-info p {
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 20px;
-    }
-    .producto-precio {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #2c7a3f;
-      margin-bottom: 20px;
-    }
-    .btn-carrito {
-      padding: 12px 20px;
-      border: 2px solid #2c7a3f;
-      background: #fff;
-      color: #2c7a3f;
-      font-size: 1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .btn-carrito:hover {
-      background: #2c7a3f;
-      color: #fff;
-    }
-    .volver {
-      display: flex;
-      align-items: center;
-      margin: 20px;
-      text-decoration: none;
-      color: #2c7a3f;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-    .volver:hover {
-      text-decoration: underline;
-    }
-    .volver span {
-      margin-left: 8px;
-    }
-  </style>
-</head>
-<body>
-
-<!-- Botón volver -->
+  <!-- Botón volver -->
   <a href="frutas-tropicales.html" class="volver">⬅ <span>Volver a Frutas Tropicales</span></a>
 
   <!-- Detalle del producto -->
@@ -895,8 +1106,5 @@
 
 <!-- Enlazar el archivo JavaScript -->
 <script src="js/main.js"></script>
-</body>
-</html>
-
 </body>
 </html>
