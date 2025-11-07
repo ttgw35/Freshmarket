@@ -1,0 +1,69 @@
+/* ======================================
+   ADAPTACIÓN MÓVIL HEADER - Freshmarket
+   ====================================== */
+@media (max-width: 768px) {
+  .top-header {
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  /* Distribución móvil: ☰  LOGO  🛒 */
+  .hamburger {
+    order: 1;
+    font-size: 28px;
+  }
+
+  .logo {
+    order: 2;
+    text-align: center;
+    flex: 1;
+  }
+
+  .carrito {
+    order: 3;
+    margin-left: 10px;
+  }
+
+  .carrito img {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* Barra de búsqueda debajo del header */
+  .search-container {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+  }
+
+  .search-bar {
+    display: flex !important;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .search-bar input {
+    flex: 1;
+    border-radius: 25px 0 0 25px;
+    padding: 10px 12px;
+  }
+
+  .search-bar button {
+    border-radius: 0 25px 25px 0;
+    padding: 10px 16px;
+  }
+
+  /* Ajustar el contenedor general del header */
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Asegura que el nav no se superponga */
+  .main-nav {
+    margin-top: 0;
+  }
+}

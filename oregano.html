@@ -5,499 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Freshmarket</title>
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    /* ---------- HEADER ---------- */
-    header {
-      background-color: #fff;
-      border-bottom: 2px solid #e5e5e5;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      position: relative;
-    }
-
-    .top-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-    }
-
-    .logo {
-      font-size: 26px;
-      font-weight: bold;
-      color: #2c7a3f;
-    }
-
-    .logo a {
-      color: #2c7a3f;
-      text-decoration: none;
-    }
-
-    .logo a:hover {
-      color: #256d35;
-    }
-
-    /* ---------- SEARCH BAR MEJORADA ---------- */
-    .search-container {
-      flex: 1;
-      margin-left: 40px;
-      max-width: 600px;
-      position: relative;
-    }
-
-    .search-bar {
-      display: flex;
-      position: relative;
-    }
-
-    .search-bar input {
-      flex: 1;
-      padding: 10px 15px;
-      border: 2px solid #2c7a3f;
-      border-radius: 25px 0 0 25px;
-      outline: none;
-    }
-
-    .search-bar button {
-      padding: 10px 20px;
-      border: none;
-      background: #2c7a3f;
-      color: white;
-      border-radius: 0 25px 25px 0;
-      cursor: pointer;
-    }
-
-    /* SUGERENCIAS DE BÚSQUEDA */
-    .suggestions-container {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 0 0 8px 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      z-index: 1000;
-      display: none;
-      max-height: 300px;
-      overflow-y: auto;
-    }
-
-    .suggestion-item {
-      padding: 12px 15px;
-      cursor: pointer;
-      border-bottom: 1px solid #f0f0f0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: background 0.2s;
-    }
-
-    .suggestion-item:hover {
-      background: #f8f9fa;
-    }
-
-    .suggestion-item:last-child {
-      border-bottom: none;
-    }
-
-    .suggestion-item img {
-      width: 40px;
-      height: 40px;
-      object-fit: cover;
-      border-radius: 4px;
-    }
-
-    .suggestion-info {
-      flex: 1;
-    }
-
-    .suggestion-name {
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 2px;
-    }
-
-    .suggestion-price {
-      color: #2c7a3f;
-      font-size: 12px;
-    }
-
-    .suggestion-category {
-      color: #666;
-      font-size: 11px;
-      background: #f0f0f0;
-      padding: 2px 8px;
-      border-radius: 10px;
-    }
-
-    .no-results {
-      padding: 15px;
-      text-align: center;
-      color: #666;
-      font-style: italic;
-    }
-
-    /* ---------- NAV ---------- */
-    .main-nav {
-      background-color: #2c7a3f;
-    }
-
-    .main-nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .main-nav ul li {
-      margin: 0;
-    }
-
-    .main-nav ul li a {
-      display: block;
-      padding: 14px 22px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .main-nav ul li a:hover {
-      background-color: #256d35;
-    }
-
-    /* ---------- HAMBURGER ---------- */
-    .hamburger {
-      display: none;
-      font-size: 26px;
-      cursor: pointer;
-      color: #2c7a3f;
-    }
-
-    /* CARRITO */
-    .carrito {
-      position: relative;
-      margin-left: 15px;
-    }
-
-    .carrito a {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: #333;
-    }
-
-    .carrito img {
-      width: 24px;
-      height: 24px;
-    }
-
-    .contador-carrito {
-      background: #e74c3c;
-      color: white;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      display: none;
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 768px) {
-      .search-container {
-        display: none;
-      }
-
-      .hamburger {
-        display: block;
-      }
-
-      .main-nav ul {
-        flex-direction: column;
-        display: none;
-        background: #2c7a3f;
-        text-align: center;
-      }
-
-      .main-nav.active ul {
-        display: flex;
-      }
-    }
-
-    /* Sección productos */
-    .productos-interes {
-      padding: 40px 20px;
-      background: #F0F0F0;
-      border-radius: 70px;
-      margin-top: 30px;
-    }
-
-    .productos-interes h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      color: #2e7d32;
-    }
-
-    /* Grid de productos */
-    .productos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    /* Tarjeta */
-    .producto-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 15px;
-      text-align: center;
-      transition: transform 0.2s;
-    }
-
-    .producto-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .producto-card img {
-      width: 100%;
-      max-height: 150px;
-      object-fit: contain;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .producto-card h3 {
-      margin: 10px 0;
-      color: #333;
-    }
-
-    .producto-card p {
-      margin: 5px 0;
-      color: #666;
-    }
-
-    .producto-card .unidad {
-      font-size: 14px;
-    }
-
-    /* Botón carrito */
-    .btn-carrito {
-      margin-top: 10px;
-      padding: 10px 15px;
-      background: #2e7d32;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .btn-carrito:hover {
-      background: #256628;
-    }
-
-    .btn-carrito.retirar {
-      background: #d32f2f;
-    }
-
-    /* HERO SECTION */
-    .hero {
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/hero-bg.jpg') center/cover no-repeat;
-      color: white;
-      text-align: center;
-      padding: 100px 20px;
-    }
-
-    .hero-content h2 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
-
-    .btn-hero {
-      display: inline-block;
-      background: #2c7a3f;
-      color: white;
-      padding: 12px 30px;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .btn-hero:hover {
-      background: #256d35;
-    }
-
-    /* CATEGORIAS SECTION */
-    .categorias {
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .categorias h2 {
-      color: #2c7a3f;
-      margin-bottom: 40px;
-      font-size: 2em;
-    }
-
-    .contenedor-categorias {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .categoria {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-      cursor: pointer;
-    }
-
-    .categoria:hover {
-      transform: translateY(-5px);
-    }
-
-    .categoria img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 15px;
-    }
-
-    .categoria h3 {
-      color: #333;
-      margin: 0;
-    }
-
-    /* OPCIONES COMPRA */
-    .opciones-compra {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      padding: 60px 20px;
-      background: #f8f9fa;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .opcion {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .opcion h3 {
-      color: #2c7a3f;
-      margin-bottom: 15px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #2c7a3f;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-      transition: background 0.3s;
-      margin-top: 15px;
-    }
-
-    .btn:hover {
-      background: #256d35;
-    }
-
-    /* CONFIANZA SECTION */
-    .confianza {
-      padding: 60px 20px;
-      background: white;
-    }
-
-    .confianza-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .columna-izquierda, .columna-derecha {
-      text-align: center;
-    }
-
-    .columna-izquierda h3, .columna-derecha h3 {
-      color: #2c7a3f;
-      margin-bottom: 20px;
-    }
-
-    .imagen-contenedor img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    /* FOOTER */
-    .footer {
-      background: #2c7a3f;
-      color: white;
-      padding: 40px 20px;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .footer-left, .footer-right {
-      flex: 1;
-      min-width: 300px;
-      margin-bottom: 20px;
-    }
-
-    .footer-left p, .footer-right a {
-      margin: 8px 0;
-    }
-
-    .footer-right {
-      text-align: right;
-    }
-
-    .footer-right a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 8px 0;
-    }
-
-    .footer-right a:hover {
-      text-decoration: underline;
-    }
-
-    .footer a[href^="mailto:"] {
-      color: white;
-    }
-  </style>
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
@@ -542,7 +50,7 @@
     </nav>
   </header>
 
-  <!-- ---------- SCRIPT PARA BÚSQUEDA Y MENÚ ---------- -->
+ <!-- ---------- SCRIPT PARA BÚSQUEDA Y MENÚ ---------- -->
   <script>
     // Base de datos de productos para búsqueda
     const productosDB = [
@@ -590,7 +98,7 @@
         id: 'lulo',
         nombre: 'Lulo',
         precio: 3050,
-        imagen: 'img/lulo a granel.png',
+        imagen: 'img/lulo.granel.png',
         categoria: 'Jugos',
         url: 'lulo.html'
       }, 
@@ -627,14 +135,6 @@
         url: 'pulpa-de-maracuya.html'
       }, 
       {
-        id: 'Oregano',
-        nombre: 'Orégano',
-        precio: 790,
-        imagen: 'img/oregano.png',
-        categoria: 'Hierbas',
-        url: 'oregano.html'
-      }, 
-      {
         id: 'Tomate de árbol',
         nombre: 'Tomate de árbol',
         precio: 1400,
@@ -644,11 +144,27 @@
       }, 
       {
         id: 'Oregano',
-        nombre: 'Orégano',
+        nombre: 'Oregano',
         precio: 790,
         imagen: 'img/oregano.png',
         categoria: 'Hierbas',
         url: 'oregano.html'
+      }, 
+      {
+        id: 'Albahaca',
+        nombre: 'Albahaca',
+        precio: 2200,
+        imagen: 'img/albahaca.png',
+        categoria: 'Hierbas aromáticas',
+        url: 'albahaca.html'
+      }, 
+      {
+        id: 'Hierbabuena',
+        nombre: 'Hierbabuena',
+        precio: 5200,
+        imagen: 'img/hierbabuena.png',
+        categoria: 'Hierbas medicinales',
+        url: 'hierbabuena.html'
       }, 
       {
         id: 'Naranja',
@@ -723,6 +239,14 @@
         url: 'papaya.html'
       },
       {
+        id: 'Guanabana',
+        nombre: 'guanábana',
+        precio: 5460,
+        imagen: 'img/guanaba.png',
+        categoria: 'Frutas poco comunes',
+        url: 'guanabana.html'
+      },
+      {
         id: 'aguacate',
         nombre: 'Aguacate',
         precio: 2250,
@@ -771,6 +295,7 @@
         url: 'lechuga.html'
       }
     ];
+
 
     // Elementos del DOM
     const searchInput = document.getElementById('search-input');
