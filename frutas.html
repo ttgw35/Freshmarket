@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Freshmarket - frutas</title> 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/index-responsive.css">
 
   <style>
     body {
@@ -122,10 +123,9 @@
 
 <body>
 
-  <!-- ---------- HEADER ---------- -->
+ <!-- ---------- HEADER ---------- -->
   <header>
-    <!-- fila superior: logo + búsqueda + hamburguesa -->
-     <div class="top-header">
+<div class="top-header">
   <div class="hamburger">☰</div>
   <div class="logo">
     <a href="index.html">Freshmarket</a>
@@ -137,6 +137,7 @@
     </a>
  </div>
 </div>
+
 <!-- Barra de búsqueda (ahora va debajo del header) -->
 <div class="search-container">
   <div class="search-bar">
@@ -144,8 +145,9 @@
     <button id="search-button">🔍</button>
   </div>
   <div class="suggestions-container" id="suggestions-container"></div>
-  </div>
+</div>
 
+</div>
     <!-- fila inferior: categorías -->
     <nav class="main-nav">
       <ul>
@@ -159,6 +161,30 @@
     </nav>
     
 </header>
+ <!-- ---------- CARRITO DE COMPRAS ---------- -->
+   <!-- Overlay para el carrito -->
+   <div class="overlay"></div>
+   <!-- Sidebar del carrito -->
+   <div class="carrito-sidebar">
+    <div class="carrito-header">
+        <h2>Tu Carrito</h2>
+        <button class="cerrar-carrito">×</button>
+    </div>
+    
+    <div class="lista-carrito">
+        <!-- Los productos del carrito se agregarán aquí dinámicamente -->
+    </div>
+    
+    <div class="carrito-total">
+        <p>Total: <span class="total-carrito">$0</span></p>
+    </div>
+    
+    <div class="botones-carrito">
+        <button class="btn-vaciar">Vaciar Carrito</button>
+        <button class="btn-comprar">Finalizar Compra</button>
+    </div>
+   </div>
+
 <!-- ---------- SCRIPT ---------- -->
   <script>
     const hamburger = document.querySelector('.hamburger');
@@ -224,6 +250,7 @@
 
 <!-- Enlazar el archivo JavaScript -->
   <script src="js/main.js"></script>
+  <script src="js/database.js"></script>
 <body>
   </html>
 

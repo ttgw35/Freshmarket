@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Freshmarket</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/index-responsive.css">
 
   <style>
     body {
@@ -124,14 +125,27 @@
 
   <!-- ---------- HEADER ---------- -->
   <header>
-    <!-- fila superior: logo + búsqueda + hamburguesa -->
-    <div class="top-header">
-      <div class="logo">
-       <a href="index.html">Freshmarket</a>
-      </div>
-   
+   <div class="top-header">
+  <div class="hamburger">☰</div>
+  <div class="logo">
+    <a href="index.html">Freshmarket</a>
+  </div>
+ <div class="carrito">
+    <a href="#">
+        <img src="img/carrito.png" alt="Carrito">
+        <span class="contador-carrito">0</span>
+    </a>
+ </div>
+</div>
 
-      <div class="hamburger">☰</div>
+<!-- Barra de búsqueda (ahora va debajo del header) -->
+<div class="search-container">
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="¿Qué producto estás buscando?">
+    <button id="search-button">🔍</button>
+  </div>
+  <div class="suggestions-container" id="suggestions-container"></div>
+</div>
     </div>
 
     <!-- fila inferior: categorías -->
@@ -145,10 +159,32 @@
         <li><a href="ofertas.html">Ofertas</a></li>
         </ul>
     </nav>
-    <div class="carrito">
-        <a href="#"><img src="img/carrito.png" alt="Carrito"></a>
-    </div>
+    
 </header>
+<!-- ---------- CARRITO DE COMPRAS ---------- -->
+   <!-- Overlay para el carrito -->
+   <div class="overlay"></div>
+   <!-- Sidebar del carrito -->
+   <div class="carrito-sidebar">
+    <div class="carrito-header">
+        <h2>Tu Carrito</h2>
+        <button class="cerrar-carrito">×</button>
+    </div>
+    
+    <div class="lista-carrito">
+        <!-- Los productos del carrito se agregarán aquí dinámicamente -->
+    </div>
+    
+    <div class="carrito-total">
+        <p>Total: <span class="total-carrito">$0</span></p>
+    </div>
+    
+    <div class="botones-carrito">
+        <button class="btn-vaciar">Vaciar Carrito</button>
+        <button class="btn-comprar">Finalizar Compra</button>
+    </div>
+   </div>
+
 <!-- ---------- SCRIPT ---------- -->
   <script>
     const hamburger = document.querySelector('.hamburger');
@@ -209,3 +245,6 @@
     <a href="pie/politicas.html" target="_blank">Política de Privacidad</a>
   </div>
 </footer>
+<!-- Enlazar el archivo JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/database.js"></script>
