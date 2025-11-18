@@ -6,6 +6,7 @@
   <title>Freshmarket</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/index-responsive.css">
+  <link rel="stylesheet" href="css/herovideo.css">
 
 <style>
 /* ===============================
@@ -751,6 +752,29 @@
     });
 </script>
 
+<!-- Sección Hero con Video -->
+<section class="hero-video-section">
+    <!-- Contenedor del video -->
+    <div class="video-container">
+        <video id="hero-video" loop muted playsinline autoplay>
+            <source src="video/video.mp4" type="video/mp4">
+            <!-- Mensaje de respaldo -->
+            Tu navegador no soporta la reproducción de video.
+        </video>
+        <!-- Botón de pausa -->
+      <button id="play-pause-btn" class="pause-btn">
+    <span></span>
+    <span></span>
+</button>
+
+    </div>
+
+    <!-- Capa de contenido superpuesta -->
+    <div class="video-overlay">
+        <h1 class="hero-title">Freshmarket no solo te vende el producto,<br>te vende la <b>experiencia</b></h1>
+        <a href="productos-frescos.html" class="cta-button">Descúbrelo tú mismo</a>
+    </div>
+</section>
 
 <!-- =============================
      PREGUNTAS FRECUENTES - 2 COLUMNAS
