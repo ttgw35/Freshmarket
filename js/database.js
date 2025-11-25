@@ -100,7 +100,7 @@
         id: 'Albahaca',
         nombre: 'Albahaca',
         precio: 2200,
-        imagen: 'img/albahaca.png',
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764078820/albahaca_estwf5.png',
         categoria: 'Hierbas aromáticas',
         url: 'albahaca.html'
       }, 
@@ -140,7 +140,7 @@
         id: 'Cebolla cabezona',
         nombre: 'Cebolla cabezona',
         precio: 2170,
-        imagen: 'img/gulupa.png',
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764079379/cebolla_cabezona_j2bueo.png',
         categoria: 'oferta',
         url: 'cebolla.html'
       }, 
@@ -196,7 +196,7 @@
         id: 'aguacate',
         nombre: 'Aguacate',
         precio: 2250,
-        imagen: 'img/aguacate.png',
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764078601/aguacate_cuaxuw.png',
         categoria: 'Frutas Tropicales',
         url: 'aguacate.html'
       },
@@ -212,7 +212,7 @@
         id: 'bananos',
         nombre: 'Bananos',
         precio: 1300,
-        imagen: 'img/banano.png',
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764079380/banano_silzty.png',
         categoria: 'Productos Frescos',
         url: 'banano.html'
       },

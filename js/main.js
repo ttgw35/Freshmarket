@@ -447,13 +447,14 @@ window.manejarAgregarCarritoDetalle = manejarAgregarCarritoDetalle;
 window.actualizarCantidad = actualizarCantidad;
 window.cambiarUnidad = cambiarUnidad;
 window.eliminarDelCarrito = eliminarDelCarrito;
-
 window.abrirCarrito = abrirCarrito;
 
 
 
 
+
 // Script para herovideo 
+
 const video = document.getElementById("hero-video");
 const btn = document.getElementById("play-pause-btn");
 

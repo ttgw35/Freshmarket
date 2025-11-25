@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/index-responsive.css">
   <link rel="stylesheet" href="css/herovideo.css">
+  <link rel="stylesheet" href="css/bienvenida.css">
 
 <style>
 /* ===============================
@@ -298,6 +299,16 @@
 </section>
 
 
+<!-- Popup de bienvenida -->
+<div id="welcome-popup" class="welcome-popup" role="dialog" aria-live="polite" aria-label="Mensaje de bienvenida">
+  <div class="popup-content">
+    <button id="close-popup" class="close-popup" aria-label="Cerrar mensaje">×</button>
+    <p id="welcome-message"></p>
+  </div>
+</div>
+
+
+
 <!-- Sección de productos recomendados -->
 <section class="productos-interes">
   <h2>Productos que te podrían interesar</h2>
@@ -461,14 +472,14 @@
 <section class="carrusel-productos">
     <div class="carrusel-container">
         <div class="carrusel-slide active">
-            <img src="img/curiosidad aguacate.png" alt="Frutas Tropicales" onerror="this.src='img/frutas-tropicales.png'">
+            <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764079379/curiosidad_aguacate_dszw9k.png" alt="Frutas Tropicales" onerror="this.src='img/frutas-tropicales.png'">
             <div class="carrusel-content">
                 <a href="frutas-tropicales.html" class="btn-ver-producto">Ver Producto</a>
             </div>
         </div>
         
         <div class="carrusel-slide">
-            <img src="img/curiosidad uchuva.png" alt="Frutas Poco Comunes" onerror="this.src='img/frutas-poco-comunes.png'">
+            <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764079379/curiosidad_uchuva_rbqlht.png" alt="Frutas Poco Comunes" onerror="this.src='img/frutas-poco-comunes.png'">
             <div class="carrusel-content">
                 <a href="frutas-poco-comunes.html" class="btn-ver-producto">Ver Producto</a>
             </div>
@@ -1001,6 +1012,7 @@
 <!-- Enlazar el archivo JavaScript -->
   <script src="js/main.js"></script>
   <script src="js/database.js"></script>
+  <script src="js/bienvenida.js"></script>
 <body>
   </html>
 
