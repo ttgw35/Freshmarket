@@ -5,126 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Freshmarket - verduras</title>
   <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/index-responsive.css">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    /* ---------- HEADER ---------- */
-    header {
-      background-color: #fff;
-      border-bottom: 2px solid #e5e5e5;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    .top-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-    }
-
-    .logo {
-      font-size: 26px;
-      font-weight: bold;
-      color: #2c7a3f;
-    }
-
-    /* ---------- SEARCH BAR ---------- */
-    .search-bar {
-      flex: 1;
-      margin-left: 40px;
-      display: flex;
-      max-width: 600px;
-    }
-
-    .search-bar input {
-      flex: 1;
-      padding: 10px 15px;
-      border: 2px solid #2c7a3f;
-      border-radius: 25px 0 0 25px;
-      outline: none;
-    }
-
-    .search-bar button {
-      padding: 10px 20px;
-      border: none;
-      background: #2c7a3f;
-      color: white;
-      border-radius: 0 25px 25px 0;
-      cursor: pointer;
-    }
-
-    /* ---------- NAV ---------- */
-    .main-nav {
-      background-color: #2c7a3f;
-    }
-
-    .main-nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .main-nav ul li {
-      margin: 0;
-    }
-
-    .main-nav ul li a {
-      display: block;
-      padding: 14px 22px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .main-nav ul li a:hover {
-      background-color: #256d35;
-    }
-
-    /* ---------- HAMBURGER ---------- */
-    .hamburger {
-      display: none;
-      font-size: 26px;
-      cursor: pointer;
-      color: #2c7a3f;
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 768px) {
-      .search-bar {
-        display: none; /* ocultar barra búsqueda en móviles */
-      }
-
-      .hamburger {
-        display: block;
-      }
-
-      .main-nav ul {
-        flex-direction: column;
-        display: none;
-        background: #2c7a3f;
-        text-align: center;
-      }
-
-      .main-nav.active ul {
-        display: flex;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/index-responsive.css">
+   <link rel="stylesheet" href="css/search-seggestions.css">
 </head>
+
 <body>
 
-
   <!-- ---------- HEADER ---------- -->
-  <header>
+ <header>
    <div class="top-header">
   <div class="hamburger">☰</div>
   <div class="logo">
@@ -138,7 +26,7 @@
  </div>
 </div>
 
-<!-- Barra de búsqueda (ahora va debajo del header) -->
+<!-- Barra de búsqueda -->
 <div class="search-container">
   <div class="search-bar">
     <input type="text" id="search-input" placeholder="¿Qué producto estás buscando?">
@@ -252,7 +140,7 @@
 
       <!-- Sección 1 -->
       <div class="seccion">
-        <img src="img/verduras hoja verde.jpg" alt="Verduras de hoja verde">
+        <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764363157/verduras_hoja_verde_bk3rw8.jpg" alt="Verduras de hoja verde">
         <div class="texto">
           <h2>Verduras de hoja verde</h2>
           <p>Frescas, ligeras y llenas de nutrientes. Ideales para ensaladas, sopas o como complemento en cualquier plato saludable. En Freshmarket encontrarás espinacas, lechugas y mucho más.</p>
@@ -262,7 +150,7 @@
 
       <!-- Sección 2 -->
       <div class="seccion">
-        <img src="img/raices secas.png" alt="Raíces frescas">
+        <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764363042/raices_secas_glzjfj.png" alt="Raíces frescas">
         <div class="texto">
           <h2>Tubérculos</h2>
           <p>La base perfecta para guisos, caldos y platillos en casa. Contamos con zanahorias, remolachas y otras verduras llenas de sabor ricas en vitaminas.</p>
@@ -346,6 +234,11 @@
   </div>
 </footer>
 
+  <!-- Enlazar el archivo JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/database.js"></script>
+
+  
   <!-- ---------- SCRIPT ---------- -->
   <script>
     const hamburger = document.querySelector('.hamburger');
@@ -355,8 +248,5 @@
       nav.classList.toggle('active');
     });
   </script>
-  <!-- Enlazar el archivo JavaScript -->
-  <script src="js/main.js"></script>
-  <script src="js/database.js"></script>
 </body>
 </html>

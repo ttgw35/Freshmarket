@@ -1,0 +1,116 @@
+/* styles/categorias.css */
+.categorias {
+    text-align: center;
+    padding: 40px 20px;
+    font-family: "Segoe UI", Oswald, "Helvetica Neue", Arial, sans-serif;
+}
+
+.categorias h2 {
+    color: #19A1B3; /* color del título*/
+    font-size: 36px;
+    margin: 0 0 20px;
+}
+
+/* Contenedor */
+.contenedor-categorias {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-top: 18px;
+}
+
+/* Tarjeta */
+.categoria {
+    width: 270px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    transition: transform .18s ease, box-shadow .18s ease;
+    -webkit-tap-highlight-color: transparent; /* mobile */
+    outline: none; /* focus styling se aplica con .focus-visible */
+}
+
+.categoria:focus-visible {
+    box-shadow: 0 6px 22px rgba(0,0,0,0.12), 0 0 0 4px rgba(255,140,26,0.12);
+}
+
+/* Imagen */
+.categoria img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Pie con título */
+.categoria h3 {
+    background: #eef9ec;
+    padding: 14px 16px;
+    margin: 0;
+    font-size: 20px;
+    color: #2d2d2d;
+    text-align: center;
+}
+
+/* Panel emergente naranja (inicialmente fuera y oculto) */
+.descripcion-hover {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 60px; /* se sitúa justo encima del pie con el título */
+    background: linear-gradient(180deg, #1BB7CC 0%, #1BB7CC 100%);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    transform: translateY(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease, transform .22s cubic-bezier(.2,.9,.3,1);
+    z-index: 5;
+    text-align: left;
+}
+
+/* Pequeña flecha apuntando abajo */
+.descripcion-hover::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -8px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #1BB7CC;
+}
+
+/* Efecto hover / visible (mostramos el panel) */
+.categoria.show-desc .descripcion-hover,
+.categoria:hover .descripcion-hover {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Escala sutil al hover */
+.categoria:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+}
+
+/* Responsive */
+@media (max-width: 920px) {
+    .contenedor-categorias { gap: 18px; }
+    .categoria { width: 220px; }
+    .categoria img { height: 150px; }
+}
+@media (max-width: 520px) {
+    .contenedor-categorias { gap: 12px; justify-content: center; }
+    .categoria { width: calc(100% - 40px); max-width: 360px; }
+}

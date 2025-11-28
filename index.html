@@ -6,6 +6,12 @@
   <title>Freshmarket</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/index-responsive.css">
+  <link rel="stylesheet" href="css/herovideo.css">
+  <link rel="stylesheet" href="css/bienvenida.css">
+  <link rel="stylesheet" href="css/categorias.css">
+  <link rel="stylesheet" href="css/faqstyle.css">
+  <link rel="stylesheet" href="css/btoncarindex.css">
+  <link rel="stylesheet" href="css/carruselcuriosidades.css">
 
 <style>
 /* ===============================
@@ -201,7 +207,7 @@
  </div>
 </div>
 
-<!-- Barra de búsqueda (ahora va debajo del header) -->
+<!-- Barra de búsqueda -->
 <div class="search-container">
   <div class="search-bar">
     <input type="text" id="search-input" placeholder="¿Qué producto estás buscando?">
@@ -264,24 +270,25 @@
 <section class="categorias">
     <h2>¿Qué quieres comprar hoy?</h2>
     <div class="contenedor-categorias">
-        <div class="categoria">
+        <div class="categoria" data-desc="Selección de frutas frescas y de temporada, perfectas para comer o para preparar postres.">
             <img src="img/frutas.jpg" alt="Frutas">
             <h3>Frutas</h3>
         </div>
-        <div class="categoria">
+        <div class="categoria" data-desc="Verduras ricas en nutrientes, ideales para ensaladas, guisos y acompañamientos saludables.">
             <img src="img/verduras.png" alt="Verduras">
             <h3>Verduras</h3>
         </div>
-        <div class="categoria">
+        <div class="categoria" data-desc="Frutas especialmente seleccionadas para jugos: jugosas, sabrosas y llenas de vitamina.">
             <img src="img/lulo.jpg" alt="Frutas para jugos">
             <h3>Frutas para jugos</h3>
         </div>
-        <div class="categoria">
+        <div class="categoria" data-desc="Hierbas aromáticas frescas para sazonar y elevar tus recetas al siguiente nivel.">
             <img src="img/hierbas.jpg" alt="Hierbas">
             <h3>Hierbas</h3>
         </div>
     </div>
 </section>
+
 
 <section class="opciones-compra">
     <div class="opcion">
@@ -297,42 +304,62 @@
 </section>
 
 
+<!-- Popup de bienvenida -->
+<div id="welcome-popup" class="welcome-popup" role="dialog" aria-live="polite" aria-label="Mensaje de bienvenida">
+  <div class="popup-content">
+    <button id="close-popup" class="close-popup" aria-label="Cerrar mensaje">×</button>
+    <p id="welcome-message"></p>
+  </div>
+</div>
+
+
+
 <!-- Sección de productos recomendados -->
 <section class="productos-interes">
-  <h2>Productos que te podrían interesar</h2>
+  <h2>Productos que te podrían interesar | <b>Compra rápida</b></h2>
   <div class="productos-grid">
     
     <!-- Producto 1 piña -->
-  <div class="producto-card">
-  <img src="img/pina.png" alt="Piña">
-  <h3>Piña</h3>
-  <p>$ 2.500 x Libra</p>
-  <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
-</div>
-    
+ <div class="producto-card">
+      <a href="piña.html">
+        <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764253450/pina_aydnsk.png" alt="Piña">
+      </a>
+      <h3>Piña</h3>
+      <p>$ 2.500 / libra</p>
+      <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
+    </div>
+
     <!-- Producto 2 platano -->
-    <div class="producto-card">
-  <img src="img/platano.png" alt="Plátano">
-  <h3>Plátano</h3>
-  <p>$ 1.800 x Libra</p>
-  <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
-</div>
+   <div class="producto-card">
+      <a href="platano.html">
+        <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764254939/platano_h59awc.png" alt="Plátano">
+      </a>
+      <h3>Plátano</h3>
+      <p>$ 1.800 / libra</p>
+      <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
+    </div>
+
     
     <!-- Producto 3 tomate-->
    <div class="producto-card">
-  <img src="img/tomate.png" alt="Tomate">
-  <h3>Tomate</h3>
-  <p>$ 2.200 x Libra</p>
-  <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
-</div>
+      <a href="tomate.html">
+        <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764254995/tomate_ehruk8.png" alt="Tomate">
+      </a>
+      <h3>Tomate chonto</h3>
+      <p>$ 2.250 / libra</p>
+      <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
+    </div>
+
     
     <!-- Producto 4 papa-->
-   <div class="producto-card">
-  <img src="img/papa.png" alt="Papa">
-  <h3>Papa</h3>
-  <p>$ 1.500 x Libra</p>
-  <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
-</div>
+  <div class="producto-card">
+      <a href="papa.html">
+        <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764265320/papa_orvfi2.png" alt="Papa">
+      </a>
+      <h3>Papa parda</h3>
+      <p>$ 1.200 / libra</p>
+      <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
+    </div>
 </section>
 
 
@@ -373,86 +400,6 @@
   }
 </script>
 
-<style>
-/* Sección productos */
-.productos-interes {
-  padding: 40px 20px;
-  background: #F0F0F0;
-  border-radius: 70px;
-  margin-top: 30px;
-}
-
-.productos-interes h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #2e7d32;
-}
-
-/* Grid de productos */
-.productos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-/* Tarjeta */
-.producto-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 15px;
-  text-align: center;
-  transition: transform 0.2s;
-}
-
-.producto-card:hover {
-  transform: translateY(-5px);
-}
-
-.producto-card img {
-  width: 100%;
-  max-height: 150px;
-  object-fit: contain;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.producto-card h3 {
-  margin: 10px 0;
-  color: #333;
-}
-
-.producto-card p {
-  margin: 5px 0;
-  color: #666;
-}
-
-.producto-card .unidad {
-  font-size: 14px;
-}
-
-/* Botón carrito */
-.btn-carrito {
-  margin-top: 10px;
-  padding: 10px 15px;
-  background: #2e7d32;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-.btn-carrito:hover {
-  background: #256628;
-}
-
-.btn-carrito.retirar {
-  background: #d32f2f;
-}
-</style>
-
 
 <!-- =============================
      CARRUSEL de curiosidades
@@ -460,14 +407,14 @@
 <section class="carrusel-productos">
     <div class="carrusel-container">
         <div class="carrusel-slide active">
-            <img src="img/curiosidad aguacate.png" alt="Frutas Tropicales" onerror="this.src='img/frutas-tropicales.png'">
+            <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764079379/curiosidad_aguacate_dszw9k.png" alt="Frutas Tropicales" onerror="this.src='img/frutas-tropicales.png'">
             <div class="carrusel-content">
                 <a href="frutas-tropicales.html" class="btn-ver-producto">Ver Producto</a>
             </div>
         </div>
         
         <div class="carrusel-slide">
-            <img src="img/curiosidad uchuva.png" alt="Frutas Poco Comunes" onerror="this.src='img/frutas-poco-comunes.png'">
+            <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764079379/curiosidad_uchuva_rbqlht.png" alt="Frutas Poco Comunes" onerror="this.src='img/frutas-poco-comunes.png'">
             <div class="carrusel-content">
                 <a href="frutas-poco-comunes.html" class="btn-ver-producto">Ver Producto</a>
             </div>
@@ -481,182 +428,9 @@
     </div>
 </section>
 
-<style>
-    /* CARRUSEL DE CURIOSIDADES */
-    .carrusel-productos {
-        padding: 80px 20px;
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        margin: 40px 0;
-    }
-
-    .carrusel-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        position: relative;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    }
-
-    .carrusel-slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 650px;
-        opacity: 0;
-        transition: opacity 0.8s ease-in-out;
-    }
-
-    .carrusel-slide.active {
-        opacity: 1;
-        position: relative;
-    }
-
-    .carrusel-slide img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .carrusel-content {
-        position: absolute;
-        bottom: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        z-index: 2;
-        width: 90%;
-        max-width: 600px;
-    }
-
-    .btn-ver-producto {
-        display: inline-block;
-        background: rgba(44, 122, 63, 0.9);
-        color: white;
-        padding: 18px 45px;
-        text-decoration: none;
-        border-radius: 35px;
-        font-weight: bold;
-        font-size: 1.2em;
-        transition: all 0.4s ease;
-        border: 3px solid rgba(255,255,255,0.8);
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    }
-
-    .btn-ver-producto:hover {
-        background: rgba(255,255,255,0.95);
-        color: #2c7a3f;
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 12px 35px rgba(0,0,0,0.4);
-        border-color: #2c7a3f;
-    }
-
-    /* Indicadores */
-    .carrusel-indicadores {
-        position: absolute;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 15px;
-        z-index: 3;
-    }
-
-    .indicador {
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.6);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border: 2px solid transparent;
-    }
-
-    .indicador.active {
-        background: white;
-        transform: scale(1.3);
-        border-color: #2c7a3f;
-    }
-
-    .indicador:hover {
-        background: white;
-        transform: scale(1.2);
-    }
-
-    /* Efecto de overlay sutil */
-    .carrusel-slide::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-            to bottom,
-            rgba(0,0,0,0.1) 0%,
-            rgba(0,0,0,0.2) 50%,
-            rgba(0,0,0,0.3) 100%
-        );
-        z-index: 1;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-        .carrusel-slide {
-            height: 550px;
-        }
-        
-        .carrusel-container {
-            max-width: 95%;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .carrusel-productos {
-            padding: 60px 15px;
-        }
-        
-        .carrusel-slide {
-            height: 450px;
-        }
-
-        .carrusel-content {
-            bottom: 60px;
-        }
-
-        .btn-ver-producto {
-            padding: 15px 35px;
-            font-size: 1.1em;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .carrusel-slide {
-            height: 350px;
-        }
-
-        .carrusel-content {
-            bottom: 40px;
-        }
-
-        .btn-ver-producto {
-            padding: 12px 30px;
-            font-size: 1em;
-        }
-        
-        .indicador {
-            width: 12px;
-            height: 12px;
-        }
-    }
-</style>
 
 <script>
-    // JavaScript SIMPLIFICADO - Solo indicadores
+    // JavaScript carrusel - Solo indicadores
     document.addEventListener('DOMContentLoaded', function() {
         const slides = document.querySelectorAll('.carrusel-slide');
         const indicators = document.querySelectorAll('.indicador');
@@ -751,6 +525,29 @@
     });
 </script>
 
+<!-- Sección Hero con Video -->
+<section class="hero-video-section">
+    <!-- Contenedor del video -->
+    <div class="video-container">
+        <video id="hero-video" loop muted playsinline autoplay>
+            <source src="video/video.mp4" type="video/mp4">
+            <!-- Mensaje de respaldo -->
+            Tu navegador no soporta la reproducción de video.
+        </video>
+        <!-- Botón de pausa -->
+      <button id="play-pause-btn" class="pause-btn">
+    <span></span>
+    <span></span>
+</button>
+
+    </div>
+
+    <!-- Capa de contenido superpuesta -->
+    <div class="video-overlay">
+        <h1 class="hero-title">Freshmarket no solo te vende el producto,<br>te vende la <b>experiencia</b></h1>
+        <a href="productos-frescos.html" class="cta-button">Descúbrelo tú mismo</a>
+    </div>
+</section>
 
 <!-- =============================
      PREGUNTAS FRECUENTES - 2 COLUMNAS
@@ -810,130 +607,6 @@
   </div>
 </section>
 
-<style>
-  /* =============================
-     ESTILOS PARA FAQ - 2 COLUMNAS
-  ============================= */
-  .faq-section {
-    padding: 60px 20px;
-    background-color: #f9f9f9;
-    margin: 40px 0;
-  }
-  
-  .faq-section h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    color: #2c7a3f;
-    font-size: 2.2em;
-  }
-  
-  .faq-container {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .faq-row {
-    display: flex;
-    gap: 30px;
-    justify-content: space-between;
-  }
-  
-  .faq-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .faq-item {
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    background-color: white;
-    transition: all 0.3s ease;
-  }
-  
-  .faq-item:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-  }
-  
-  .faq-question {
-    padding: 20px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    font-weight: bold;
-    color: #333;
-    background-color: #fff;
-    transition: background-color 0.3s;
-  }
-  
-  .faq-question:hover {
-    background-color: #f5f5f5;
-  }
-  
-  .faq-toggle {
-    font-size: 1.5em;
-    font-weight: normal;
-    transition: transform 0.3s ease;
-    color: #2c7a3f;
-    min-width: 20px;
-    text-align: center;
-  }
-  
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    background-color: #fff;
-  }
-  
-  .faq-answer p {
-    padding: 0 25px 20px;
-    margin: 0;
-    line-height: 1.6;
-    color: #555;
-  }
-  
-  /* Estado activo (pregunta expandida) */
-  .faq-item.active .faq-answer {
-    max-height: 500px; /* Valor suficientemente alto para contener la respuesta */
-  }
-  
-  .faq-item.active .faq-toggle {
-    transform: rotate(45deg);
-  }
-  
-  /* Responsive - En móvil vuelve a una columna */
-  @media (max-width: 768px) {
-    .faq-section {
-      padding: 40px 15px;
-    }
-    
-    .faq-section h2 {
-      font-size: 1.8em;
-    }
-    
-    .faq-row {
-      flex-direction: column;
-      gap: 15px;
-    }
-    
-    .faq-column {
-      gap: 15px;
-    }
-    
-    .faq-question {
-      padding: 15px 20px;
-      font-size: 0.95em;
-    }
-    
-    .faq-answer p {
-      padding: 0 20px 15px;
-    }
-  }
-</style>
 
 <script>
   // JavaScript para el funcionamiento del FAQ
@@ -977,6 +650,9 @@
 <!-- Enlazar el archivo JavaScript -->
   <script src="js/main.js"></script>
   <script src="js/database.js"></script>
+  <script src="js/bienvenida.js"></script>
+  <script src="js/categorias.js"></script>
+
 <body>
   </html>
 

@@ -574,12 +574,12 @@
 <script src="js/main.js"></script>
  <script src="js/database.js"></script>
 
-</body>
-</html>
+  <!-- Botón volver -->
+  <a href="frutas.html" class="volver">⬅ <span>Volver a Frutas</span></a>
 
 <!-- ====== SECCIÓN FRUTAS TROPICALES ====== -->
 <section class="productos-frutas">
-  <h2>Frutas Tropicales</h2>
+  <h2><b>Frutas Tropicales</b></h2>
   <div class="productos-grid">
     
     <!-- Producto Mango -->
@@ -595,7 +595,7 @@
     <!-- Producto Papaya -->
     <div class="producto-card">
       <a href="papaya.html">
-        <img src="img/papaya.png" alt="Papaya">
+        <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764364147/papaya_kgodc2.png" alt="Papaya">
       </a>
       <h3>Papaya</h3>
       <p>$ 2.200 / libra</p>
@@ -605,10 +605,20 @@
     <!-- Producto Aguacate -->
     <div class="producto-card">
       <a href="aguacate.html">
-        <img src="img/aguacate.png" alt="Aguacate">
+        <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764078601/aguacate_cuaxuw.png" alt="Aguacate">
       </a>
       <h3>Aguacate</h3>
       <p>$ 2.250 / libra</p>
+      <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
+    </div>
+
+    <!-- Producto Aguacate -->
+    <div class="producto-card">
+      <a href="piñain.html">
+        <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764253450/pina_aydnsk.png" alt="Piña">
+      </a>
+      <h3>Piña</h3>
+      <p>$ 2.500 / libra</p>
       <button class="btn-carrito" onclick="manejarAgregarCarrito(this)">Agregar al carrito 🛒</button>
     </div>
 
@@ -617,13 +627,13 @@
 <!-- ====== CSS ====== -->
 <style>
 .productos-frutas {
-  padding: 40px 20px;
+  padding: 45px 25px;
   text-align: center;
 }
 .productos-frutas h2 {
   font-size: 2rem;
   margin-bottom: 30px;
-  color: #2c7a3f;
+  color: #C7DB79;
 }
 .productos-grid {
   display: flex;
@@ -688,5 +698,7 @@
     <a href="pie/politicas.html" target="_blank" >Política de Envío</a>
     <a href="pie/politicas.html" target="_blank">Política de Privacidad</a>
   </div>
-
 </footer>
+
+</body>
+</html>

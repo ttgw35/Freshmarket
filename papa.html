@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Freshmarket</title>
+  <title>Freshmarket - Mango</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+  
 </head>
 
 <body>
@@ -50,7 +51,6 @@
     </nav>
   </header>
 
- <!-- ---------- SCRIPT PARA BÚSQUEDA Y MENÚ ---------- -->
  
 
   <!-- ---------- CARRITO DE COMPRAS ---------- -->
@@ -75,6 +75,7 @@
       <button class="btn-vaciar">Vaciar Carrito</button>
       <button class="btn-comprar">Finalizar Compra</button>
     </div>
+  </div>
 </div>
 
 
@@ -144,38 +145,36 @@
   </style>
 </head>
 <body>
+    <!-- Botón volver -->
+    <a href="index.html" class="volver">← <span>Volver al incio</span></a>
 
-  <!-- Botón volver -->
-  <a href="productos-frescos.html" class="volver">⬅ <span>Volver a productos frescos</span></a>
+    <!-- Detalle del producto -->
+    <section class="producto-detalle">
+        <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764265320/papa_orvfi2.png" alt="Mango">
+        <div class="producto-info">
+            <h1>Papa parda</h1>
+            <p>Papa parda pastusa lavada.</p>
+            <div class="producto-precio">$ 1.200 x lb</div>
+            <button class="btn-carrito" onclick="manejarAgregarCarritoDetalle(this)">Agregar al carrito</button>
+        </div>
+    </section>
 
-  <!-- Detalle del producto -->
-  <section class="producto-detalle">
-    <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764363788/manzana_roja_iykvao.png" alt="Manzana Roja">
-    <div class="producto-info">
-      <h1>Manzana roja</h1>
-      <p>Manzana roja importada.</p>
-      <div class="producto-precio">$ 5.200 x lb</div>
-      <button class="btn-carrito" onclick="manejarAgregarCarritoDetalle(this)">Agregar al carrito 🛒</button>
-    </div>
-  </section>
+    <!-- --- FOOTER --- -->
+    <footer class="footer">
+        <div class="footer-left">
+            <p><strong>Contacto:</strong></p>
+            <p>Email: <a href="mailto:Freshmarket@gmail.com">Freshmarket@gmail.com</a></p>
+            <p>Tel: 52-1-33-12345678</p>
+        </div>
+        <div class="footer-right">
+            <a href="pie/politicas.html" target="_blank">Términos y Condiciones</a>
+            <a href="pie/politicas.html" target="_blank">Política de Envío</a>
+            <a href="pie/politicas.html" target="_blank">Política de Privacidad</a>
+        </div>
+    </footer>
 
- <!-- ---------- FOOTER ---------- -->
-
-<footer class="footer">
-  <div class="footer-left">
-    <p><strong>Contacto:</strong></p>
-    <p>Email: <a href="mailto:Freshmarket@gmail.com">Freshmarket@gmail.com</a></p>
-    <p>Tel: 52-1-33-12345678</p>
-  </div>
-  <div class="footer-right">
-    <a href="pie/politicas.html" target="_blank">Términos y Condiciones</a>
-    <a href="pie/politicas.html" target="_blank" >Política de Envío</a>
-    <a href="pie/politicas.html" target="_blank">Política de Privacidad</a>
-  </div>
-</footer>
-
-<!-- Enlazar el archivo JavaScript -->
-<script src="js/main.js"></script>
-<script src="js/database.js"></script>
+    <!-- Enlazar el archivo JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/database.js"></script>
 </body>
 </html>

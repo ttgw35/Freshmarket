@@ -448,3 +448,20 @@ window.actualizarCantidad = actualizarCantidad;
 window.cambiarUnidad = cambiarUnidad;
 window.eliminarDelCarrito = eliminarDelCarrito;
 window.abrirCarrito = abrirCarrito;
+
+
+// Script para herovideo 
+
+const video = document.getElementById("hero-video");
+const btn = document.getElementById("play-pause-btn");
+
+btn.addEventListener("click", () => {
+    if (video.paused) {
+        video.play();
+        btn.classList.remove("play");
+    } else {
+        video.pause();
+        btn.classList.add("play");
+    }
+});
+

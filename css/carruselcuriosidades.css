@@ -1,0 +1,171 @@
+ /* CARRUSEL DE CURIOSIDADES */
+    .carrusel-productos {
+        padding: 80px 20px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        margin: 40px 0;
+    }
+
+    .carrusel-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .carrusel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 650px;
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out;
+    }
+
+    .carrusel-slide.active {
+        opacity: 1;
+        position: relative;
+    }
+
+    .carrusel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .carrusel-content {
+        position: absolute;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        z-index: 2;
+        width: 90%;
+        max-width: 600px;
+    }
+
+    .btn-ver-producto {
+        display: inline-block;
+        background: rgba(44, 122, 63, 0.9);
+        color: white;
+        padding: 18px 45px;
+        text-decoration: none;
+        border-radius: 35px;
+        font-weight: bold;
+        font-size: 1.2em;
+        transition: all 0.4s ease;
+        border: 3px solid rgba(255,255,255,0.8);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .btn-ver-producto:hover {
+        background: rgba(255,255,255,0.95);
+        color: #2c7a3f;
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+        border-color: #2c7a3f;
+    }
+
+    /* Indicadores */
+    .carrusel-indicadores {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 15px;
+        z-index: 3;
+    }
+
+    .indicador {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.6);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .indicador.active {
+        background: white;
+        transform: scale(1.3);
+        border-color: #2c7a3f;
+    }
+
+    .indicador:hover {
+        background: white;
+        transform: scale(1.2);
+    }
+
+    /* Efecto de overlay sutil */
+    .carrusel-slide::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.1) 0%,
+            rgba(0,0,0,0.2) 50%,
+            rgba(0,0,0,0.3) 100%
+        );
+        z-index: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .carrusel-slide {
+            height: 550px;
+        }
+        
+        .carrusel-container {
+            max-width: 95%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .carrusel-productos {
+            padding: 60px 15px;
+        }
+        
+        .carrusel-slide {
+            height: 450px;
+        }
+
+        .carrusel-content {
+            bottom: 60px;
+        }
+
+        .btn-ver-producto {
+            padding: 15px 35px;
+            font-size: 1.1em;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .carrusel-slide {
+            height: 350px;
+        }
+
+        .carrusel-content {
+            bottom: 40px;
+        }
+
+        .btn-ver-producto {
+            padding: 12px 30px;
+            font-size: 1em;
+        }
+        
+        .indicador {
+            width: 12px;
+            height: 12px;
+        }
+    }

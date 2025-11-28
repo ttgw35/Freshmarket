@@ -3,124 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Freshmarket</title>
+  <title>Freshmarket - hierbas</title>
   <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/index-responsive.css">
+  <link rel="stylesheet" href="css/search-seggestions.css">
 
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    /* ---------- HEADER ---------- */
-    header {
-      background-color: #fff;
-      border-bottom: 2px solid #e5e5e5;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    .top-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-    }
-
-    .logo {
-      font-size: 26px;
-      font-weight: bold;
-      color: #2c7a3f;
-    }
-
-    /* ---------- SEARCH BAR ---------- */
-    .search-bar {
-      flex: 1;
-      margin-left: 40px;
-      display: flex;
-      max-width: 600px;
-    }
-
-    .search-bar input {
-      flex: 1;
-      padding: 10px 15px;
-      border: 2px solid #2c7a3f;
-      border-radius: 25px 0 0 25px;
-      outline: none;
-    }
-
-    .search-bar button {
-      padding: 10px 20px;
-      border: none;
-      background: #2c7a3f;
-      color: white;
-      border-radius: 0 25px 25px 0;
-      cursor: pointer;
-    }
-
-    /* ---------- NAV ---------- */
-    .main-nav {
-      background-color: #2c7a3f;
-    }
-
-    .main-nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .main-nav ul li {
-      margin: 0;
-    }
-
-    .main-nav ul li a {
-      display: block;
-      padding: 14px 22px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .main-nav ul li a:hover {
-      background-color: #256d35;
-    }
-
-    /* ---------- HAMBURGER ---------- */
-    .hamburger {
-      display: none;
-      font-size: 26px;
-      cursor: pointer;
-      color: #2c7a3f;
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 768px) {
-      .search-bar {
-        display: none; /* ocultar barra búsqueda en móviles */
-      }
-
-      .hamburger {
-        display: block;
-      }
-
-      .main-nav ul {
-        flex-direction: column;
-        display: none;
-        background: #2c7a3f;
-        text-align: center;
-      }
-
-      .main-nav.active ul {
-        display: flex;
-      }
-    }
-  </style>
 </head>
+
 <body>
 
 
@@ -184,19 +73,6 @@
         <button class="btn-comprar">Finalizar Compra</button>
     </div>
    </div>
-<!-- ---------- SCRIPT ---------- -->
-  <script>
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('.main-nav');
-
-    hamburger.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
-  </script>
-</body>
-</html>
-
-
 
 <!-- HERO (Hierbas) -->
 <section class="hero-hierbas">
@@ -214,7 +90,7 @@
 <section class="hierbas-subsecciones">
   <!-- Card 1 -->
   <div class="hierba-card">
-    <img src="img/aromaticas.jpg" alt="Hierbas Aromáticas">
+    <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764078942/aromaticas_iwzlkr.jpg" alt="Hierbas Aromáticas">
     <h3>Hierbas aromáticas</h3>
     <p>Albahaca, cilantro, perejil y más para darle frescura a tus comidas.</p>
     <a href="hierbas-aromaticas.html" class="btn">Ver más</a>
@@ -222,7 +98,7 @@
 
   <!-- Card 2 -->
   <div class="hierba-card">
-    <img src="img/medicinal.png" alt="Hierbas Medicinales">
+    <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764363389/medicinal_luyem3.png" alt="Hierbas Medicinales">
     <h3>Hierbas medicinales</h3>
     <p>Manzanilla, hierbabuena y otras plantas con propiedades naturales.</p>
     <a href="medicinales.html" class="btn">Ver más</a>
@@ -246,3 +122,14 @@
 <!-- Enlazar el archivo JavaScript -->
   <script src="js/main.js"></script>
   <script src="js/database.js"></script>
+  <!-- ---------- SCRIPT ---------- -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.main-nav');
+
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

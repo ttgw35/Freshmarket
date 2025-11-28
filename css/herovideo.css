@@ -1,0 +1,178 @@
+/* Estilos para la sección Hero con Video - VERSIÓN LIMPIA */
+.hero-video-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ============================================================
+   BOTÓN PLAY/PAUSE – ESTILO MINIMALISTA (FUNCIONA 100%)
+   ============================================================ */
+.pause-btn {
+    appearance: none; /* quita estilos nativos */
+    -webkit-appearance: none;
+    outline: none;
+
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+    border: 3px solid #ffffff; /* círculo blanco */
+    background: transparent; /* completamente transparente */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Barras de pausa */
+.pause-btn span {
+    width: 6px;
+    height: 24px;
+    background: #ffffff;
+    border-radius: 3px;
+}
+
+/* Quitar color azul del click */
+.pause-btn:focus,
+.pause-btn:active {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Modo PLAY → triángulo blanco */
+.pause-btn.play span {
+    display: none;
+}
+
+.pause-btn.play::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 0 12px 20px;
+    border-color: transparent transparent transparent #ffffff;
+}
+
+/* ============================================================
+   TEXTO Y CAPA OSCURA
+   ============================================================ */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    padding: 20px;
+    z-index: 2;
+}
+
+/* Tipografía más llamativa */
+.hero-title {
+    font-size: 3.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    line-height: 1.2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: -0.5px;
+}
+
+/* "experiencia" en negrita */
+.hero-title .highlight {
+    font-weight: 900;
+    color: #FFA500;
+}
+
+/* Botón naranja */
+.cta-button {
+    background: #FF6B00;
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.cta-button:hover {
+    background: #E65C00;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+        margin-bottom: 25px;
+        padding: 0 15px;
+    }
+
+    .cta-button {
+        padding: 16px 35px;
+        font-size: 1.2rem;
+    }
+
+    .pause-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .cta-button {
+        padding: 14px 30px;
+        font-size: 1.1rem;
+    }
+
+    .video-overlay {
+        padding: 15px;
+    }
+}

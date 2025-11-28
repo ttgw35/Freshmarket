@@ -4,17 +4,17 @@
         id: 'piña',
         nombre: 'Piña',
         precio: 2500,
-        imagen: 'img/pina.png',
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764253450/pina_aydnsk.png',
         categoria: 'Frutas',
-        url: 'frutas-tropicales.html'
+        url: 'piñain.html'
       },
       {
         id: 'plátano',
         nombre: 'Plátano',
         precio: 1800,
-        imagen: 'img/platano.png',
-        categoria: 'Frutas',
-        url: 'frutas-populares.html'
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764254939/platano_h59awc.png',
+        categoria: 'verdura',
+        url: 'index.html'
       },
       {
         id: 'Gulupa',
@@ -100,7 +100,7 @@
         id: 'Albahaca',
         nombre: 'Albahaca',
         precio: 2200,
-        imagen: 'img/albahaca.png',
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764078820/albahaca_estwf5.png',
         categoria: 'Hierbas aromáticas',
         url: 'albahaca.html'
       }, 
@@ -140,7 +140,7 @@
         id: 'Cebolla cabezona',
         nombre: 'Cebolla cabezona',
         precio: 2170,
-        imagen: 'img/gulupa.png',
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764079379/cebolla_cabezona_j2bueo.png',
         categoria: 'oferta',
         url: 'cebolla.html'
       }, 
@@ -156,17 +156,17 @@
         id: 'tomate',
         nombre: 'Tomate',
         precio: 2200,
-        imagen: 'img/tomate.png',
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764254995/tomate_ehruk8.png',
         categoria: 'Verduras',
-        url: 'verduras.html'
+        url: 'tomate.html'
       },
       {
         id: 'papa',
-        nombre: 'Papa',
+        nombre: 'Papa parda',
         precio: 1500,
-        imagen: 'img/papa.png',
-        categoria: 'Verduras',
-        url: 'verduras.html'
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764265320/papa_orvfi2.png',
+        categoria: 'Tubérculos',
+        url: 'papa..html'
       },
       {
         id: 'mango',
@@ -180,7 +180,7 @@
         id: 'papaya',
         nombre: 'Papaya',
         precio: 2200,
-        imagen: 'img/papaya.png',
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764364147/papaya_kgodc2.png',
         categoria: 'Frutas Tropicales',
         url: 'papaya.html'
       },
@@ -188,7 +188,7 @@
         id: 'Guanabana',
         nombre: 'guanábana',
         precio: 5460,
-        imagen: 'img/guanaba.png',
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764364111/guanaba_iicr0o.png',
         categoria: 'Frutas poco comunes',
         url: 'guanabana.html'
       },
@@ -196,7 +196,7 @@
         id: 'aguacate',
         nombre: 'Aguacate',
         precio: 2250,
-        imagen: 'img/aguacate.png',
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764078601/aguacate_cuaxuw.png',
         categoria: 'Frutas Tropicales',
         url: 'aguacate.html'
       },
@@ -204,7 +204,7 @@
         id: 'manzana-roja',
         nombre: 'Manzana Roja',
         precio: 5200,
-        imagen: 'img/manzana roja.png',
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764363788/manzana_roja_iykvao.png',
         categoria: 'Productos Frescos',
         url: 'manzana.html'
       },
@@ -212,7 +212,7 @@
         id: 'bananos',
         nombre: 'Bananos',
         precio: 1300,
-        imagen: 'img/banano.png',
+        imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764079380/banano_silzty.png',
         categoria: 'Productos Frescos',
         url: 'banano.html'
       },

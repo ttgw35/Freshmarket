@@ -9,7 +9,7 @@
 }
 
 body {
-    background: #f9f9f9;
+    background: #F5F5F5;
     color: #333;
     line-height: 1.6;
 }
@@ -217,7 +217,7 @@ header .carrito img:hover {
 
 .btn-hero {
     padding: 12px 25px;
-    background: #ff7043; /* naranja fresco */
+    background: #DE2121; /* naranja fresco */
     border-radius: 8px;
     color: #fff;
     text-decoration: none;
@@ -226,7 +226,7 @@ header .carrito img:hover {
 }
 
 .btn-hero:hover {
-    background: #e64a19;
+    background: #CCBA0C;
     transform: scale(1.05);
 }
 
@@ -1099,7 +1099,7 @@ header .carrito img:hover {
 
 .eliminar-item {
     background: #ffebee !important;
-    color: #d32f2f;
+    color: #C40E0E;
     border: 1px solid #ffcdd2 !important;
 }
 
@@ -1209,7 +1209,7 @@ header .carrito img:hover {
     width: 100%;
     padding: 10px;
     background: #ffebee;
-    color: #d32f2f;
+    color: #C40E0E;
     border: 2px solid #ffcdd2;
     border-radius: 6px;
     cursor: pointer;
