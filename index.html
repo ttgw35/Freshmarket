@@ -12,183 +12,8 @@
   <link rel="stylesheet" href="css/faqstyle.css">
   <link rel="stylesheet" href="css/btoncarindex.css">
   <link rel="stylesheet" href="css/carruselcuriosidades.css">
+  <link rel="stylesheet" href="css/search-seggestions.css">
 
-<style>
-/* ===============================
-   ESTILOS PARA LAS SUGERENCIAS DE BÚSQUEDA
-================================*/
-.search-container {
-  position: relative;
-}
-
-.suggestions-container {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-top: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  z-index: 1000;
-  display: none;
-  border-radius: 0 0 8px 8px;
-  overflow: hidden;
-}
-
-.suggestion-item {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.suggestion-item:hover {
-  background-color: #f5f5f5;
-}
-
-.suggestion-item img {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.suggestion-info {
-  flex: 1;
-}
-
-.suggestion-name {
-  font-weight: bold;
-  color: #333;
-}
-
-.suggestion-price {
-  font-size: 14px;
-  color: #2c7a3f;
-}
-
-.suggestion-category {
-  background: #e9f5ee;
-  color: #2c7a3f;
-  font-size: 12px;
-  padding: 4px 8px;
-  border-radius: 12px;
-}
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    /* ---------- HEADER ---------- */
-    header {
-      background-color: #fff;
-      border-bottom: 2px solid #e5e5e5;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    .top-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-    }
-
-    .logo {
-      font-size: 26px;
-      font-weight: bold;
-      color: #2c7a3f;
-    }
-
-    /* ---------- SEARCH BAR ---------- */
-    .search-bar {
-      flex: 1;
-      margin-left: 40px;
-      display: flex;
-      max-width: 600px;
-    }
-
-    .search-bar input {
-      flex: 1;
-      padding: 10px 15px;
-      border: 2px solid #2c7a3f;
-      border-radius: 25px 0 0 25px;
-      outline: none;
-    }
-
-    .search-bar button {
-      padding: 10px 20px;
-      border: none;
-      background: #2c7a3f;
-      color: white;
-      border-radius: 0 25px 25px 0;
-      cursor: pointer;
-    }
-
-    /* ---------- NAV ---------- */
-    .main-nav {
-      background-color: #2c7a3f;
-    }
-
-    .main-nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .main-nav ul li {
-      margin: 0;
-    }
-
-    .main-nav ul li a {
-      display: block;
-      padding: 14px 22px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .main-nav ul li a:hover {
-      background-color: #256d35;
-    }
-
-    /* ---------- HAMBURGER ---------- */
-    .hamburger {
-      display: none;
-      font-size: 26px;
-      cursor: pointer;
-      color: #2c7a3f;
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 768px) {
-      .search-bar {
-        display: none; /* ocultar barra búsqueda en móviles */
-      }
-
-      .hamburger {
-        display: block;
-      }
-
-      .main-nav ul {
-        flex-direction: column;
-        display: none;
-        background: #2c7a3f;
-        text-align: center;
-      }
-
-      .main-nav.active ul {
-        display: flex;
-      }
-    }
-  </style>
 </head>
 
 
@@ -370,7 +195,7 @@
     <div class="columna-izquierda">
       <h3>DEL CAMPO A LA MESA</h3>
       <div class="imagen-contenedor">
-        <img src="img/del campo a la mesa.png" alt="Del campo a la mesa">
+        <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764442157/del_campo_a_la_mesa_qchgyc.png" alt="Del campo a la mesa">
       </div>
       <p>Del campo a tu mesa: productos frescos directamente de nuestros agricultores, sin intermediarios.</p>
     </div>
@@ -379,7 +204,7 @@
     <div class="columna-derecha">
       <h3>GARANTIZANDO LA CALIDAD</h3>
       <div class="imagen-contenedor">
-        <img src="img/garantizando la calidad.png" alt="Garantizando la calidad">
+        <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764442157/garantizando_la_calidad_gnexaf.png" alt="Garantizando la calidad">
       </div>
       <p>Garantizamos calidad y frescura en cada compra. ¡Tu confianza es lo más importante para nosotros!</p>
     </div>
@@ -407,14 +232,14 @@
 <section class="carrusel-productos">
     <div class="carrusel-container">
         <div class="carrusel-slide active">
-            <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764079379/curiosidad_aguacate_dszw9k.png" alt="Frutas Tropicales" onerror="this.src='img/frutas-tropicales.png'">
+            <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764444120/curiosidad_aguacate_exqwk0.png" alt="curiosidad aguacate" onerror="this.src='img/frutas-tropicales.png'">
             <div class="carrusel-content">
                 <a href="frutas-tropicales.html" class="btn-ver-producto">Ver Producto</a>
             </div>
         </div>
         
         <div class="carrusel-slide">
-            <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764079379/curiosidad_uchuva_rbqlht.png" alt="Frutas Poco Comunes" onerror="this.src='img/frutas-poco-comunes.png'">
+            <img src="https://res.cloudinary.com/ditgyvcpf/image/upload/v1764444120/curiosidad_uchuva_j1nva2.png" alt="curiosidad uchuva" onerror="this.src='img/frutas-poco-comunes.png'">
             <div class="carrusel-content">
                 <a href="frutas-poco-comunes.html" class="btn-ver-producto">Ver Producto</a>
             </div>
