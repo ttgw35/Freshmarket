@@ -1,19 +1,14 @@
-// ------------------------------
-// Carrito Freshmarket - v2
-// Integración: botones +/-, slider, conversión Kg/Lb, pasos inteligentes
-// Reemplaza tu script actual por completo con este
-// ------------------------------
+// Carrito Freshmarket - v2 (versión corregida y consolidada)
+// Reemplaza TODO tu script actual por este. Comentarios explican cambios clave.
 
 let carrito = [];
 
 // DOM (se inicializan en inicializarCarrito)
 let sidebarCarrito, overlay, cerrarCarrito, listaCarrito, totalCarrito, btnVaciar,
-    btnComprar, contadorCarrito;
+  btnComprar, contadorCarrito;
 
-// Factor de conversión
 const LB_POR_KG = 2.20462;
 
-// Mapa de precios por kilo (si existe preferimos usarlo para Kg)
 const preciosKilo = {
   'piña': 5500,
   'plátano': 3960,
@@ -35,7 +30,9 @@ const preciosKilo = {
   'lechuga': 2750
 };
 
-// Inicialización
+// Guard para listeners idempotente
+let listenersConfigured = false;
+
 function inicializarCarrito() {
   sidebarCarrito = document.querySelector('.carrito-sidebar');
   overlay = document.querySelector('.overlay');
@@ -58,62 +55,102 @@ function inicializarCarrito() {
   }
 }
 
-// Listeners
+/* -------------------------
+   CONFIGURAR EVENT LISTENERS (una sola definición, idempotente)
+   ------------------------- */
 function configurarEventListeners() {
+  if (listenersConfigured) return;
+  listenersConfigured = true;
+
   if (cerrarCarrito) cerrarCarrito.addEventListener('click', cerrarCarritoHandler);
   if (overlay) overlay.addEventListener('click', cerrarCarritoHandler);
   if (btnVaciar) btnVaciar.addEventListener('click', vaciarCarrito);
   if (btnComprar) btnComprar.addEventListener('click', finalizarCompra);
 
-  const iconoCarrito = document.querySelector('.carrito a, .carrito img, .carrito');
+  // Icono del carrito: seleccionamos el elemento que tenga la clase .carrito (mejor ser 
+  // específico en tu HTML, ej: .carrito-toggle)
+  const iconoCarrito = document.querySelector('.carrito, .carrito a, .carrito img, .carrito-toggle');
   if (iconoCarrito) {
     iconoCarrito.addEventListener('click', function (e) {
+      // si se hizo click en un enlace real (que navega) permitimos navegación
+      const anchor = e.target.closest('a');
+      if (anchor && anchor.getAttribute('href') && anchor.getAttribute('href') !== '#') {
+        // permitir navegación normal
+        return;
+      }
       e.preventDefault();
       abrirCarrito();
     });
   }
+
+  // Observador para mantener pointer-events sincronizado (solo en overlay)
+  if (overlay) {
+    const observer = new MutationObserver(() => {
+      overlay.style.pointerEvents = overlay.classList.contains('active') ? 'auto' : 'none';
+    });
+    observer.observe(overlay, { attributes: true, attributeFilter: ['class'] });
+    window.__carritoOverlayObserver = observer;
+  }
 }
 
+/* -------------------------
+   ABRIR / CERRAR (unificado y seguro)
+   ------------------------- */
 function abrirCarrito() {
-  if (sidebarCarrito) {
-    sidebarCarrito.classList.add('active');
-    overlay && overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+  if (!sidebarCarrito || !overlay) return;
+  sidebarCarrito.classList.add('active');
+  overlay.classList.add('active');
+
+  // bloqueo de scroll por clase -> se recomienda añadir .no-scroll { overflow:hidden; } en CSS
+  document.body.classList.add('no-scroll');
+
+  // pointer-events por clase (no confiar exclusivamente en inline)
+  overlay.style.pointerEvents = 'auto';
 }
 
 function cerrarCarritoHandler() {
-  if (sidebarCarrito) {
-    sidebarCarrito.classList.remove('active');
-    overlay && overlay.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
+  if (!sidebarCarrito || !overlay) return;
+  sidebarCarrito.classList.remove('active');
+  overlay.classList.remove('active');
+
+  document.body.classList.remove('no-scroll');
+
+  // dejar pointer-events none después de la animación para evitar bloquear clicks
+  setTimeout(() => {
+    if (!overlay.classList.contains('active')) overlay.style.pointerEvents = 'none';
+  }, 300); // coincidir con tu transición CSS
 }
 
-// Añadir producto (cards usan manejarAgregarCarrito y detalles usan manejarAgregarCarritoDetalle)
+/* -------------------------
+   LÓGICA DEL CARRITO
+   ------------------------- */
+
+function roundToTwo(num) {
+  return Math.round((Number(num) + Number.EPSILON) * 100) / 100;
+}
+
+function pasoInteligente(cantidadActual) {
+  return (cantidadActual < 1) ? 0.1 : 0.5;
+}
+
+// Añadir producto: AHORA buscamos por id **ignorando unidad** para evitar duplicados
 function agregarAlCarrito(producto) {
-  // GuardamosprecioBaseLb para conversiones: si viene precio en {precio} asumimos es por Libra
   if (producto.precioBaseLb === undefined) {
-    producto.precioBaseLb = Number(producto.precio); // precio que pasas al crear producto (por Lb)
+    producto.precioBaseLb = Number(producto.precio);
   }
 
-  // Checar existencia por id+unidad (cada unidad separada)
-  const productoExistente = carrito.find(item =>
-    item.id === producto.id && item.unidad === producto.unidad
-  );
+  // Buscamos por ID únicamente (evita duplicados si el usuario cambió unidad)
+  const productoExistente = carrito.find(item => item.id === producto.id);
 
   if (productoExistente) {
     productoExistente.cantidad = roundToTwo(productoExistente.cantidad + producto.cantidad);
   } else {
-    // Normalizar campos mínimos
     producto.cantidad = roundToTwo(producto.cantidad || 1);
     producto.unidad = producto.unidad || 'Lb';
-    // Garantizar precio actual por unidad (según unidad)
     if (producto.unidad === 'Kg') {
-      // preferimos precio por kilo del mapa si existe
       producto.precio = preciosKilo[producto.id] ? Number(preciosKilo[producto.id]) : roundToTwo(producto.precioBaseLb * LB_POR_KG);
     } else {
-      producto.precio = roundToTwo(producto.precioBaseLb); // por libra
+      producto.precio = roundToTwo(producto.precioBaseLb);
     }
     carrito.push(producto);
   }
@@ -123,7 +160,7 @@ function agregarAlCarrito(producto) {
   abrirCarrito();
 }
 
-// Eliminar por índice
+// Eliminar por índice actual (se usa desde listeners añadidos en render para evitar índices stale)
 function eliminarDelCarrito(index) {
   if (index >= 0 && index < carrito.length) {
     const productoEliminado = carrito[index];
@@ -133,15 +170,9 @@ function eliminarDelCarrito(index) {
   }
 }
 
-// Devuelve el paso según cantidad actual (regla B: <1 => 0.1, >=1 => 0.5)
-function pasoInteligente(cantidadActual) {
-  return (cantidadActual < 1) ? 0.1 : 0.5;
-}
-
-// Actualizar cantidad por botones (uso 'inc' y 'dec') o por delta numérico
+// actualizar cantidad usando index (se mantienen closures seguras desde el render)
 function actualizarCantidad(index, cambio) {
   if (!carrito[index]) return;
-
   let actual = Number(carrito[index].cantidad || 0.1);
   if (cambio === 'inc' || cambio === 'dec') {
     const step = pasoInteligente(actual);
@@ -149,20 +180,14 @@ function actualizarCantidad(index, cambio) {
   } else if (typeof cambio === 'number') {
     actual = actual + cambio;
   } else {
-    // si llegó un string numérico
     const maybeNum = Number(cambio);
     if (!isNaN(maybeNum)) actual = maybeNum;
   }
-
-  if (actual < 0.1) actual = 0.1; // mínimo seguro
-  // Redondeamos internamente a 2 decimales
+  if (actual < 0.1) actual = 0.1;
   carrito[index].cantidad = roundToTwo(actual);
-
-  // Si quisiéramos permitir 0 => eliminar, podríamos, pero mantengo mínimo 0.1
   actualizarCarrito();
 }
 
-// Actualizar cantidad directo (slider)
 function actualizarCantidadDirecto(index, valor) {
   if (!carrito[index]) return;
   let v = Number(valor);
@@ -171,17 +196,14 @@ function actualizarCantidadDirecto(index, valor) {
   actualizarCarrito();
 }
 
-// Cambiar unidad (Kg/Lb) y recalcular precio por unidad
 function cambiarUnidad(index, nuevaUnidad) {
   if (!carrito[index]) return;
   const producto = carrito[index];
 
   if (producto.unidad === nuevaUnidad) return;
 
-  // Si no tenemos precioBaseLb (ej legacy), crear uno usando precio actual
   if (producto.precioBaseLb === undefined || isNaN(producto.precioBaseLb)) {
     if (producto.unidad === 'Kg') {
-      // si estaba en Kg, calcular base lb
       producto.precioBaseLb = roundToTwo((producto.precio || 0) / LB_POR_KG);
     } else {
       producto.precioBaseLb = roundToTwo(producto.precio || 0);
@@ -191,18 +213,14 @@ function cambiarUnidad(index, nuevaUnidad) {
   producto.unidad = nuevaUnidad;
 
   if (nuevaUnidad === 'Kg') {
-    // si existe precio por kilo conocido en el mapa lo usamos (autoridad), si no calculamos
     if (preciosKilo[producto.id]) {
       producto.precio = Number(preciosKilo[producto.id]);
     } else {
       producto.precio = roundToTwo(producto.precioBaseLb * LB_POR_KG);
     }
   } else {
-    // volver a libras
     if (preciosKilo[producto.id]) {
-      // precio por kg fue proveído; convertir a lb
       producto.precio = roundToTwo(Number(preciosKilo[producto.id]) / LB_POR_KG);
-      // también mantener precioBaseLb consistente
       producto.precioBaseLb = roundToTwo(producto.precio);
     } else {
       producto.precio = roundToTwo(producto.precioBaseLb);
@@ -212,7 +230,6 @@ function cambiarUnidad(index, nuevaUnidad) {
   actualizarCarrito();
 }
 
-// Vaciar carrito
 function vaciarCarrito() {
   if (carrito.length > 0) {
     carrito = [];
@@ -221,17 +238,14 @@ function vaciarCarrito() {
   }
 }
 
-// Finalizar compra (redirigir)
 function finalizarCompra() {
   if (carrito.length === 0) {
     mostrarMensaje('Tu carrito está vacío');
     return;
   }
-  // Mantener comportamiento anterior
   window.location.href = 'pago.html';
 }
 
-// Actualizar contador (ahora muestra número de productos, no suma de cantidades)
 function actualizarContadorCarrito() {
   const contador = document.querySelector('.contador-carrito');
   if (!contador) return;
@@ -245,15 +259,93 @@ function actualizarContadorCarrito() {
   }
 }
 
-// Función util: redondeo a 2 decimales (evita errores de punto flotante)
-function roundToTwo(num) {
-  return Math.round((Number(num) + Number.EPSILON) * 100) / 100;
+function mostrarMensaje(mensaje) {
+  let mensajeElemento = document.querySelector('.mensaje-carrito');
+
+  // Si no existe el elemento, lo creamos (pero oculto por defecto)
+  if (!mensajeElemento) {
+    mensajeElemento = document.createElement('div');
+    mensajeElemento.className = 'mensaje-carrito';
+    document.body.appendChild(mensajeElemento);
+
+    // Estilos base: oculto y sin captura de eventos por defecto
+    mensajeElemento.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #EDB41C;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 6px;
+      z-index: 1002;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      font-family: Arial, sans-serif;
+      font-weight:700;
+      pointer-events: none; /* importante: por defecto no captura clicks */
+      transform: translateY(-8px);
+    `;
+  }
+
+  // Actualiza texto y muestra el mensaje
+  mensajeElemento.textContent = mensaje;
+
+  // Mostrar: activamos pointer-events mientras se ve
+  mensajeElemento.style.pointerEvents = 'auto';
+  mensajeElemento.style.opacity = '1';
+  mensajeElemento.style.transform = 'translateY(0)';
+
+  // Después del tiempo, ocultamos y quitamos pointer-events
+  setTimeout(() => {
+    // Hacemos la transición de salida
+    mensajeElemento.style.opacity = '0';
+    mensajeElemento.style.transform = 'translateY(-8px)';
+    // Desactivar pointer-events para que no bloquee
+    mensajeElemento.style.pointerEvents = 'none';
+    // (Opcional) remover del DOM tras la transición para limpiar
+    setTimeout(() => {
+      // si quieres que quede permanentemente en DOM, comenta la línea siguiente
+      if (mensajeElemento && mensajeElemento.parentNode) {
+        mensajeElemento.parentNode.removeChild(mensajeElemento);
+      }
+    }, 350); // esperar a que termine la transición
+  }, 2400);
 }
 
-// Actualizar la UI del carrito (render)
+
+function guardarCarrito() {
+  try {
+    localStorage.setItem('carritoFreshmarket', JSON.stringify(carrito));
+  } catch (e) {
+    console.error('Error al guardar el carrito:', e);
+  }
+}
+
+function cargarCarrito() {
+  try {
+    const carritoGuardado = localStorage.getItem('carritoFreshmarket');
+    if (carritoGuardado) {
+      carrito = JSON.parse(carritoGuardado) || [];
+      carrito = carrito.map(p => {
+        p.cantidad = Number(p.cantidad) || 0.1;
+        p.precioBaseLb = p.precioBaseLb !== undefined ? Number(p.precioBaseLb) : (p.precio || 0);
+        p.precio = Number(p.precio) || p.precioBaseLb;
+        p.unidad = p.unidad || 'Lb';
+        return p;
+      });
+      actualizarCarrito();
+    }
+  } catch (e) {
+    console.error('Error al cargar el carrito:', e);
+    carrito = [];
+  }
+}
+
+/* -------------------------
+   RENDERIZADO DEL CARRITO (mejor manejo de listeners, sin onclick inline)
+   ------------------------- */
 function actualizarCarrito() {
   if (!listaCarrito) return;
-
   listaCarrito.innerHTML = '';
 
   if (carrito.length === 0) {
@@ -268,14 +360,12 @@ function actualizarCarrito() {
   let total = 0;
 
   carrito.forEach((producto, index) => {
-    // asegurar campos
     producto.cantidad = Number(producto.cantidad) || 0.1;
     producto.precio = Number(producto.precio) || 0;
 
     const subtotal = roundToTwo(producto.precio * producto.cantidad);
     total += subtotal;
 
-    // Construir HTML con botones +/-, display y slider
     const item = document.createElement('div');
     item.className = 'item-carrito';
     item.innerHTML = `
@@ -283,37 +373,44 @@ function actualizarCarrito() {
       <div class="info-item">
         <h4>${producto.nombre}</h4>
         <p class="precio-unitario">$${Number(producto.precio).toLocaleString()} x ${producto.unidad}</p>
-
         <div class="controles-peso">
           <div class="selector-unidad">
             <label>Unidad:</label>
-            <select class="unidad-select" onchange="cambiarUnidad(${index}, this.value)">
+            <select class="unidad-select">
               <option value="Lb" ${producto.unidad === 'Lb' ? 'selected' : ''}>Libra (Lb)</option>
               <option value="Kg" ${producto.unidad === 'Kg' ? 'selected' : ''}>Kilo (Kg)</option>
             </select>
           </div>
-
           <div class="controles-cantidad" style="flex:1;">
             <label>Cantidad:</label>
             <div class="cantidad-control" style="display:flex; align-items:center; gap:10px; margin-top:6px;">
-              <button type="button" class="btn-menos btn-cantidad" onclick="actualizarCantidad(${index}, 'dec')">−</button>
+              <button type="button" class="btn-menos btn-cantidad">−</button>
               <div style="min-width:110px; text-align:center; background:#f6f7f8; padding:8px 12px; border-radius:10px; font-weight:800;">
                 <span class="cantidad-display">${producto.cantidad.toFixed(2)}</span> <small style="color:#666; margin-left:6px;">${producto.unidad}</small>
               </div>
-              <button type="button" class="btn-mas btn-cantidad" onclick="actualizarCantidad(${index}, 'inc')">+</button>
+              <button type="button" class="btn-mas btn-cantidad">+</button>
             </div>
-
-            <!-- Slider (paso 0.1 para precisión, la lógica de pasos "rápidos" la dan los botones) -->
-            <input type="range" min="0.1" step="0.1" value="${producto.cantidad}" oninput="actualizarCantidadDirecto(${index}, this.value)" class="slider-cantidad" style="width:100%; margin-top:10px;">
+            <input type="range" min="0.1" step="0.1" value="${producto.cantidad}" class="slider-cantidad" style="width:100%; margin-top:10px;">
           </div>
         </div>
-
         <p class="subtotal">Subtotal: $${Number(subtotal).toLocaleString()}</p>
-
-        <button class="eliminar-item" onclick="eliminarDelCarrito(${index})">Eliminar</button>
+        <button class="eliminar-item">Eliminar</button>
       </div>
     `;
     listaCarrito.appendChild(item);
+
+    // Añadimos listeners aquí (evita índices "stale" y onclick inline)
+    const btnMas = item.querySelector('.btn-mas');
+    const btnMenos = item.querySelector('.btn-menos');
+    const slider = item.querySelector('.slider-cantidad');
+    const selectUnidad = item.querySelector('.unidad-select');
+    const btnEliminar = item.querySelector('.eliminar-item');
+
+    btnMas && btnMas.addEventListener('click', () => actualizarCantidad(index, 'inc'));
+    btnMenos && btnMenos.addEventListener('click', () => actualizarCantidad(index, 'dec'));
+    slider && slider.addEventListener('input', (e) => actualizarCantidadDirecto(index, e.target.value));
+    selectUnidad && selectUnidad.addEventListener('change', (e) => cambiarUnidad(index, e.target.value));
+    btnEliminar && btnEliminar.addEventListener('click', () => eliminarDelCarrito(index));
   });
 
   if (totalCarrito) totalCarrito.textContent = `$${Math.round(total).toLocaleString()}`;
@@ -322,7 +419,10 @@ function actualizarCarrito() {
   guardarCarrito();
 }
 
-// Actualizar todos los botones de producto (mantener tu lógica)
+/* -------------------------
+   Sincronizar botones de productos (cards y detalle)
+   - ahora comprobamos existencia por ID (no por unidad) para evitar duplicados.
+   ------------------------- */
 function actualizarBotonesProductos() {
   const botonesProducto = document.querySelectorAll('.btn-carrito');
   botonesProducto.forEach(boton => {
@@ -339,6 +439,11 @@ function actualizarBotonesProductos() {
         boton.innerText = "Agregar al carrito";
         boton.classList.remove("retirar");
       }
+
+      // asegurar que el botón use la función global manejarAgregarCarrito al click
+      boton.removeEventListener('click', boton._handler);
+      boton._handler = () => manejarAgregarCarrito(boton);
+      boton.addEventListener('click', boton._handler);
     }
   });
 
@@ -357,68 +462,69 @@ function actualizarBotonesProductos() {
         boton.innerText = "Agregar al carrito";
         boton.classList.remove("retirar");
       }
+
+      boton.removeEventListener('click', boton._handler);
+      boton._handler = () => manejarAgregarCarritoDetalle(boton);
+      boton.addEventListener('click', boton._handler);
     }
   });
 }
 
-// Manejar agregar desde cards
+/* -------------------------
+   Manejo de botones (cards / detalle)
+   - ahora buscamos existencia por id únicamente (no por unidad)
+   ------------------------- */
+
 function manejarAgregarCarrito(boton) {
-    const productoCard = boton.closest('.producto-card');
-    const nombre = productoCard.querySelector('h3').textContent;
+  const productoCard = boton.closest('.producto-card');
+  const nombre = productoCard.querySelector('h3').textContent;
+  const imagenEl = productoCard.querySelector('img');
+  const imagen = imagenEl ? imagenEl.src : '';
+  let precios = productoCard.querySelectorAll('p');
+  let precio = null;
 
-    // Recuperar imagen correctamente
-    const imagen = productoCard.querySelector('img').src;
-
-    // Buscar precios dentro de la tarjeta
-    let precios = productoCard.querySelectorAll('p');
-
-    // Tomar el ÚLTIMO precio válido dentro de los <p>
-    let precio = null;
-
-    precios.forEach(p => {
-        const matches = p.textContent.match(/\$ *([\d.,]+)/g);
-        if (matches) {
-            matches.forEach(m => {
-                const val = parseFloat(m.replace(/\$/g, '').replace(/\./g, '').replace(',', '.'));
-                if (!isNaN(val)) precio = val; // siempre el último precio válido
-            });
-        }
-    });
-
-    if (precio === null) {
-        console.error("No se encontró un precio válido en la tarjeta");
-        return;
+  precios.forEach(p => {
+    const matches = p.textContent.match(/\$ *([\d.,]+)/g);
+    if (matches) {
+      matches.forEach(m => {
+        const val = parseFloat(m.replace(/\$/g, '').replace(/\./g, '').replace(',', '.'));
+        if (!isNaN(val)) precio = val;
+      });
     }
+  });
 
-    const id = nombre.toLowerCase().replace(/\s+/g, '-');
+  if (precio === null) {
+    console.error("No se encontró un precio válido en la tarjeta");
+    return;
+  }
 
-    const productoExistenteIndex = carrito.findIndex(
-        item => item.id === id && item.unidad === 'Lb'
-    );
+  const id = nombre.toLowerCase().replace(/\s+/g, '-');
 
-    if (productoExistenteIndex !== -1) {
-        eliminarDelCarrito(productoExistenteIndex);
-    } else {
-        const producto = {
-            id: id,
-            nombre: nombre,
-            precio: precio,
-            precioBaseLb: precio,
-            imagen: imagen,
-            unidad: 'Lb',
-            cantidad: 1
-        };
-        agregarAlCarrito(producto);
-    }
+  const productoExistenteIndex = carrito.findIndex(item => item.id === id);
+
+  if (productoExistenteIndex !== -1) {
+    // quitar
+    eliminarDelCarrito(productoExistenteIndex);
+  } else {
+    const producto = {
+      id: id,
+      nombre: nombre,
+      precio: precio,
+      precioBaseLb: precio,
+      imagen: imagen,
+      unidad: 'Lb',
+      cantidad: 1
+    };
+    agregarAlCarrito(producto);
+  }
 }
 
-
-// Manejar agregar desde detalle (mantengo el nombre)
 function manejarAgregarCarritoDetalle(boton) {
   const productoDetalle = boton.closest('.producto-detalle');
   const nombre = productoDetalle.querySelector('h1').textContent;
   const precioTexto = productoDetalle.querySelector('.producto-precio').textContent;
-  const imagen = productoDetalle.querySelector('img').src;
+  const imagenEl = productoDetalle.querySelector('img');
+  const imagen = imagenEl ? imagenEl.src : '';
 
   const precioMatch = precioTexto.match(/\$ *([\d.,]+)/);
   if (!precioMatch) {
@@ -429,7 +535,7 @@ function manejarAgregarCarritoDetalle(boton) {
   const precio = parseFloat(precioMatch[1].replace(/\./g, '').replace(',', '.'));
   const id = nombre.toLowerCase().replace(/\s+/g, '-');
 
-  const productoExistenteIndex = carrito.findIndex(item => item.id === id && item.unidad === 'Lb');
+  const productoExistenteIndex = carrito.findIndex(item => item.id === id);
 
   if (productoExistenteIndex !== -1) {
     eliminarDelCarrito(productoExistenteIndex);
@@ -447,72 +553,12 @@ function manejarAgregarCarritoDetalle(boton) {
   }
 }
 
-// Mensaje temporal (mantengo tu función)
-function mostrarMensaje(mensaje) {
-  let mensajeElemento = document.querySelector('.mensaje-carrito');
-  if (!mensajeElemento) {
-    mensajeElemento = document.createElement('div');
-    mensajeElemento.className = 'mensaje-carrito';
-    document.body.appendChild(mensajeElemento);
-
-    mensajeElemento.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #EDB41C;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 6px;
-      z-index: 1002;
-      opacity: 0;
-      transition: opacity 0.3s;
-      font-family: Arial, sans-serif;
-      font-weight:700;
-    `;
-  }
-
-  mensajeElemento.textContent = mensaje;
-  mensajeElemento.style.opacity = '1';
-
-  setTimeout(() => {
-    if (mensajeElemento) mensajeElemento.style.opacity = '0';
-  }, 2600);
-}
-
-// Guardar / Cargar localStorage
-function guardarCarrito() {
-  try {
-    localStorage.setItem('carritoFreshmarket', JSON.stringify(carrito));
-  } catch (e) {
-    console.error('Error al guardar el carrito:', e);
-  }
-}
-
-function cargarCarrito() {
-  try {
-    const carritoGuardado = localStorage.getItem('carritoFreshmarket');
-    if (carritoGuardado) {
-      carrito = JSON.parse(carritoGuardado) || [];
-      // Asegurar campos mínimos para compatibilidad con versiones previas
-      carrito = carrito.map(p => {
-        p.cantidad = Number(p.cantidad) || 0.1;
-        p.precioBaseLb = p.precioBaseLb !== undefined ? Number(p.precioBaseLb) : (p.precio || 0);
-        p.precio = Number(p.precio) || p.precioBaseLb;
-        p.unidad = p.unidad || 'Lb';
-        return p;
-      });
-      actualizarCarrito();
-    }
-  } catch (e) {
-    console.error('Error al cargar el carrito:', e);
-    carrito = [];
-  }
-}
-
-// Inicializar en DOMContentLoaded
+/* -------------------------
+   Inicialización
+   ------------------------- */
 document.addEventListener('DOMContentLoaded', inicializarCarrito);
 
-// Exponer funciones globales esperadas por el HTML
+// Exponer funciones globales necesarias (si tu HTML espera llamadas globales)
 window.manejarAgregarCarrito = manejarAgregarCarrito;
 window.manejarAgregarCarritoDetalle = manejarAgregarCarritoDetalle;
 window.actualizarCantidad = actualizarCantidad;

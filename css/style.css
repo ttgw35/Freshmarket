@@ -871,21 +871,21 @@ header .carrito img:hover {
 }
 
 /* Overlay: asegurar que cubre todo y está por debajo del sidebar */
+
 .overlay {
-  position: fixed !important;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  z-index: 99990;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  display: none; /* JS puede activar mostrando el elemento; mantenemos comportamiento seguro */
+    position: fixed !important;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 99990;
+    opacity: 0;
+    visibility: hidden; /* Esto es clave: previene clics cuando no se ve */
+    transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
 .overlay.active {
-  display: block;
-  opacity: 1;
+    opacity: 1;
+    visibility: visible; /* Solo aquí atrapa clics */
 }
-
 /* Encabezado */
 .carrito-header {
   display:flex;
@@ -1151,6 +1151,39 @@ header .carrito img:hover {
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 .contador-carrito.hidden { display:none !important; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Añadir al final de tu archivo style.css */
+.no-scroll {
+  overflow: hidden !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
