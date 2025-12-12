@@ -6,80 +6,7 @@
   <title>Freshmarket</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
-</head>
-
-<body>
-  <!-- ---------- HEADER ---------- -->
-  <header>
-    <!-- fila superior: logo + búsqueda + hamburguesa -->
-    <div class="top-header">
-      <div class="logo">
-        <a href="index.html">Freshmarket</a>
-      </div>
-
-      <div class="search-container">
-        <div class="search-bar">
-          <input type="text" id="search-input" placeholder="¿Qué producto estás buscando?">
-          <button id="search-button">🔍</button>
-        </div>
-        <div class="suggestions-container" id="suggestions-container">
-          <!-- Las sugerencias se cargarán aquí dinámicamente -->
-        </div>
-      </div>
-
-      <div class="carrito">
-        <a href="#">
-          <img src="img/carrito.png" alt="Carrito">
-          <span class="contador-carrito">0</span>
-        </a>
-      </div>
-
-      <div class="hamburger">☰</div>
-    </div>
-
-    <!-- fila inferior: categorías -->
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="frutas.html">Frutas</a></li>
-        <li><a href="verduras.html">Verduras</a></li>
-        <li><a href="jugos.html">Frutas para jugos</a></li>
-        <li><a href="hierbas.html">Hierbas</a></li>
-        <li><a href="ofertas.html">Ofertas</a></li>
-      </ul>
-    </nav>
-  </header>
-
- 
-
-  <!-- ---------- CARRITO DE COMPRAS ---------- -->
-  <!-- Overlay para el carrito -->
-  <div class="overlay"></div>
-  <!-- Sidebar del carrito -->
-  <div class="carrito-sidebar">
-    <div class="carrito-header">
-      <h2>Tu Carrito</h2>
-      <button class="cerrar-carrito">×</button>
-    </div>
-    
-    <div class="lista-carrito">
-      <!-- Los productos del carrito se agregarán aquí dinámicamente -->
-    </div>
-    
-    <div class="carrito-total">
-      <p>Total: <span class="total-carrito">$0</span></p>
-    </div>
-    
-    <div class="botones-carrito">
-      <button class="btn-vaciar">Vaciar Carrito</button>
-      <button class="btn-comprar">Finalizar Compra</button>
-    </div>
-</div>
-
-
-
-
-<style>
+  <style>
     .producto-detalle {
       display: flex;
       align-items: center;
@@ -144,6 +71,48 @@
 </head>
 <body>
 
+  <header>
+    <!-- fila superior: logo + búsqueda + hamburguesa -->
+    <div class="top-header">
+      <div class="logo">
+        <a href="index.html">Freshmarket</a>
+      </div>
+
+      <div class="search-container">
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="¿Qué producto estás buscando?">
+          <button id="search-button">🔍</button>
+        </div>
+        <div class="suggestions-container" id="suggestions-container">
+          <!-- Las sugerencias se cargarán aquí dinámicamente -->
+        </div>
+      </div>
+
+      <div class="carrito">
+        <a href="#">
+          <img src="img/carrito.png" alt="Carrito">
+          <span class="contador-carrito">0</span>
+        </a>
+      </div>
+
+      <div class="hamburger">☰</div>
+    </div>
+
+    <!-- fila inferior: categorías -->
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="frutas.html">Frutas</a></li>
+        <li><a href="verduras.html">Verduras</a></li>
+        <li><a href="jugos.html">Frutas para jugos</a></li>
+        <li><a href="hierbas.html">Hierbas</a></li>
+        <li><a href="ofertas.html">Ofertas</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+
   <!-- Botón volver -->
   <a href="ofertas.html" class="volver">⬅ <span>Volver a a ofertas</span></a>
 
@@ -160,12 +129,9 @@
     </div>
   </section>
 
-</body>
-</html>
 
- <!-- ---------- FOOTER ---------- -->
 
-<footer class="footer">
+  <footer class="footer">
   <div class="footer-left">
     <p><strong>Contacto:</strong></p>
     <p>Email: <a href="mailto:Freshmarket@gmail.com">Freshmarket@gmail.com</a></p>
@@ -178,8 +144,8 @@
   </div>
 </footer>
 
-<!-- Enlazar el archivo JavaScript -->
-<script src="js/main.js"></script>
-<script src="js/database.js"></script>
+  <!-- Enlazar el archivo JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/database.js"></script>
 </body>
 </html>
