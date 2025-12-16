@@ -3,6 +3,8 @@
    ====================================== */
 @media (max-width: 768px) {
   .top-header {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     position: relative;
@@ -34,6 +36,7 @@
   .search-container {
     display: block;
     width: 100%;
+    order: 4;
     padding: 10px 15px;
     box-sizing: border-box;
   }

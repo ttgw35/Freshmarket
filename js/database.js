@@ -6,7 +6,7 @@
         precio: 2500,
         imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764253450/pina_aydnsk.png',
         categoria: 'Frutas',
-        url: 'piñain.html'
+        url: 'piña.html'
       },
       {
         id: 'plátano',
@@ -14,7 +14,7 @@
         precio: 1800,
         imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764254939/platano_h59awc.png',
         categoria: 'verdura',
-        url: 'index.html'
+        url: 'platano.html'
       },
       {
         id: 'Gulupa',
@@ -23,7 +23,7 @@
         imagen: 'img/gulupa.png',
         categoria: 'Frutas',
         url: 'gulupa.html'
-      }, 
+      },
        {
         id: 'zanahoria',
         nombre: 'zanahoria',
@@ -31,7 +31,7 @@
         imagen: 'img/zanahoria.png',
         categoria: 'verduras',
         url: 'zanahoria.html'
-      }, 
+      },
        {
         id: 'remolacha',
         nombre: 'remolacha',
@@ -39,7 +39,7 @@
         imagen: 'img/remolacha.png',
         categoria: 'verduras',
         url: 'remolacha.html'
-      }, 
+      },
        {
         id: 'lulo',
         nombre: 'Lulo',
@@ -47,7 +47,7 @@
         imagen: 'img/lulo.granel.png',
         categoria: 'Jugos',
         url: 'lulo.html'
-      }, 
+      },
        {
         id: 'Mora',
         nombre: 'Mora',
@@ -55,7 +55,7 @@
         imagen: 'img/mora.png',
         categoria: 'Jugos',
         url: 'mora.html'
-      }, 
+      },
       {
         id: 'Oregano',
         nombre: 'Orégano',
@@ -63,7 +63,7 @@
         imagen: 'img/oregano.png',
         categoria: 'Hierbas',
         url: 'oregano.html'
-      }, 
+      },
        {
         id: 'Pulpa de mango',
         nombre: 'Pulpa de mango',
@@ -71,7 +71,7 @@
         imagen: 'img/pulpa mango.png',
         categoria: 'Pulpas',
         url: 'pulpa-de-mango.html'
-      }, 
+      },
        {
         id: 'Pulpa de maracuyá',
         nombre: 'Pulpa de maracuyá',
@@ -79,7 +79,7 @@
         imagen: 'img/pulpa maracuyá.png',
         categoria: 'Pulpas',
         url: 'pulpa-de-maracuya.html'
-      }, 
+      },
       {
         id: 'Tomate de árbol',
         nombre: 'Tomate de árbol',
@@ -87,15 +87,7 @@
         imagen: 'img/tomate de arbol.jpg',
         categoria: 'frutas',
         url: 'tomatearbol.html'
-      }, 
-      {
-        id: 'Oregano',
-        nombre: 'Oregano',
-        precio: 790,
-        imagen: 'img/oregano.png',
-        categoria: 'Hierbas',
-        url: 'oregano.html'
-      }, 
+      },
       {
         id: 'Albahaca',
         nombre: 'Albahaca',
@@ -103,7 +95,7 @@
         imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764078820/albahaca_estwf5.png',
         categoria: 'Hierbas aromáticas',
         url: 'albahaca.html'
-      }, 
+      },
       {
         id: 'Hierbabuena',
         nombre: 'Hierbabuena',
@@ -111,7 +103,7 @@
         imagen: 'img/hierbabuena.png',
         categoria: 'Hierbas medicinales',
         url: 'hierbabuena.html'
-      }, 
+      },
       {
         id: 'Naranja',
         nombre: 'Naranja',
@@ -119,7 +111,7 @@
         imagen: 'img/naranja.jpg',
         categoria: 'frutas',
         url: 'naranja.html'
-      }, 
+      },
       {
         id: 'Manzanilla',
         nombre: 'Manzanilla',
@@ -127,7 +119,7 @@
         imagen: 'img/manzanilla.png',
         categoria: 'hierbas',
         url: 'manzanilla.html'
-      }, 
+      },
       {
         id: 'Limon Tahití',
         nombre: 'limón',
@@ -135,7 +127,7 @@
         imagen: 'img/limon.png',
         categoria: 'oferta',
         url: 'limon.html'
-      }, 
+      },
       {
         id: 'Cebolla cabezona',
         nombre: 'Cebolla cabezona',
@@ -143,7 +135,7 @@
         imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764079379/cebolla_cabezona_j2bueo.png',
         categoria: 'oferta',
         url: 'cebolla.html'
-      }, 
+      },
       {
         id: 'granadilla',
         nombre: 'granadilla',
@@ -151,7 +143,7 @@
         imagen: 'img/granadilla.png',
         categoria: 'oferta',
         url: 'granadilla.html'
-      }, 
+      },
       {
         id: 'tomate',
         nombre: 'Tomate',
@@ -166,7 +158,7 @@
         precio: 1500,
         imagen: 'https://res.cloudinary.com/ditgyvcpf/image/upload/v1764265320/papa_orvfi2.png',
         categoria: 'Tubérculos',
-        url: 'papa..html'
+        url: 'papa.html'
       },
       {
         id: 'mango',
@@ -252,9 +244,9 @@
     // Función para buscar productos
     function buscarProductos(termino) {
       if (!termino) return [];
-      
+
       const terminoLower = termino.toLowerCase();
-      return productosDB.filter(producto => 
+      return productosDB.filter(producto =>
         producto.nombre.toLowerCase().includes(terminoLower) ||
         producto.categoria.toLowerCase().includes(terminoLower)
       );
@@ -263,7 +255,7 @@
     // Función para mostrar sugerencias
     function mostrarSugerencias(productos) {
       suggestionsContainer.innerHTML = '';
-      
+
       if (productos.length === 0) {
         suggestionsContainer.innerHTML = '<div class="no-results">No se encontraron productos</div>';
         suggestionsContainer.style.display = 'block';
@@ -272,7 +264,7 @@
 
       // Mostrar máximo 5 sugerencias
       const productosMostrar = productos.slice(0, 5);
-      
+
       productosMostrar.forEach(producto => {
         const suggestionItem = document.createElement('div');
         suggestionItem.className = 'suggestion-item';
@@ -284,15 +276,15 @@
           </div>
           <span class="suggestion-category">${producto.categoria}</span>
         `;
-        
+
         suggestionItem.addEventListener('click', () => {
           window.location.href = producto.url;
           suggestionsContainer.style.display = 'none';
         });
-        
+
         suggestionsContainer.appendChild(suggestionItem);
       });
-      
+
       suggestionsContainer.style.display = 'block';
     }
 
